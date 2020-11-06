@@ -29,7 +29,5 @@ public abstract class Avatar {
         this.color = color;
     }
     
-    // BRO this comment is by ur bro!!!!!
-    ///never delete this comment
-    /// else our bro ship will end 
+    // Bro i wish u die a virgin!!!!
 }
