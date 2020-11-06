@@ -5,22 +5,22 @@ public class Switch extends Avatar {
         super(cordinate, Color.ALICEBLUE);
     }
 
-    @Override
-    public Cordinate getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setPosition(Cordinate position) {
-        this.position = position;
-    }
-
     public void switchColor(Ball ball) {
         for (Color color : ColorList.getColorList())
             if (ball.getColor() != color) {
                 ball.setColor(color);
                 return;
             }
+    }
+
+    @Override
+    public Cordinate getCordinate() {
+        return cordinate;
+    }
+
+    @Override
+    public void setCordinate(Cordinate cordinate) {
+        this.cordinate = cordinate;
     }
 
     public boolean checkVicinity(Ball ball) {

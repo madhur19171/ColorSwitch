@@ -10,13 +10,13 @@ public class Star extends Avatar {
     }
 
     @Override
-    public Cordinate getPosition() {
-        return position;
+    public Cordinate getCordinate() {
+        return cordinate;
     }
 
     @Override
-    public void setPosition(Cordinate position) {
-        this.position = position;
+    public void setCordinate(Cordinate cordinate) {
+        this.cordinate = cordinate;
     }
 
     @Override

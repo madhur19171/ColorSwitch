@@ -1,5 +1,5 @@
 public interface Positionable {
     public Cordinate getCordinate();
 
-    public void setCordinate();
+    public void setCordinate(Cordinate cordinate);
 }

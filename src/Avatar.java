@@ -1,12 +1,12 @@
 import javafx.scene.paint.Color;
 
-public abstract class Avatar {
-    protected Cordinate position;
+public abstract class Avatar implements Positionable, Colorable {
+    protected Cordinate cordinate;
     protected Color color;
     protected ColorList colorList;
 
-    public Avatar(Cordinate position, Color color) {
-        this.position = position;
+    public Avatar(Cordinate cordinate, Color color) {
+        this.cordinate = cordinate;
         this.color = color;
         colorList = new ColorList();
     }
@@ -15,9 +15,9 @@ public abstract class Avatar {
         return colorList;
     }
 
-    public abstract Cordinate getPosition();
+    public abstract Cordinate getCordinate();
 
-    public abstract void setPosition(Cordinate position);
+    public abstract void setCordinate(Cordinate cordinate);
 
     abstract boolean checkVicinity(Ball ball);
 

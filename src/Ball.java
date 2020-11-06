@@ -14,13 +14,13 @@ public class Ball extends Avatar {
     }
 
     @Override
-    public Cordinate getPosition() {
-        return this.position;
+    public Cordinate getCordinate() {
+        return cordinate;
     }
 
     @Override
-    public void setPosition(Cordinate position) {
-        this.position = position;
+    public void setCordinate(Cordinate cordinate) {
+        this.cordinate = cordinate;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Ball extends Avatar {
     }
 
     public void freeFall() {
-        position.incY(velocity);
+        cordinate.incY(velocity);
         velocity -= acceleration;
     }
 }
