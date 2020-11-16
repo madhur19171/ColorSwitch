@@ -76,8 +76,4 @@ public class Ball extends Avatar {
         velocity -= acceleration;//Decelerating the Ball.
     }
 
-    public Cordinate getTop() {
-        //Get the cordinate of the top of the ball.
-        return new Cordinate(cordinate.getX(), ball.getCenterY() - ball.getRadius());
-    }
 }
