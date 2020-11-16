@@ -1,16 +1,25 @@
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 public class Ball extends Avatar {
 
     private int size;
     private double velocity;
-    private double acceleration;
+    private final double acceleration;
+    private final Circle ball;
 
-    public Ball(int size, double acceleration, Cordinate position, Color color) {
-        super(position, color);
+    public Ball(int size, double acceleration, Cordinate position) {
+        super(position, ColorList.getColorList().get(0));
         this.size = size;
         this.acceleration = acceleration;
         velocity = 0.0;
+        ball = new Circle(position.getX(), position.getY(), size);
+        ball.setStrokeWidth(0.0);
+        ball.setFill(color);
+    }
+
+    public Circle getBall() {
+        return ball;
     }
 
     @Override
@@ -21,6 +30,8 @@ public class Ball extends Avatar {
     @Override
     public void setCordinate(Cordinate cordinate) {
         this.cordinate = cordinate;
+        ball.setCenterX(cordinate.getX());
+        ball.setCenterY(cordinate.getY());
     }
 
     @Override
@@ -36,4 +47,5 @@ public class Ball extends Avatar {
         cordinate.incY(velocity);
         velocity -= acceleration;
     }
+
 }

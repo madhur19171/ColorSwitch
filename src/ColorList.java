@@ -6,10 +6,11 @@ public class ColorList {
     private static ArrayList<Color> colorList;
 
     public ColorList() {
-        colorList.add(Color.BLUE);
-        colorList.add(Color.ORANGE);
-        colorList.add(Color.PINK);
-        colorList.add(Color.LIME);
+        colorList = new ArrayList<>(0);
+        colorList.add(Color.rgb(142, 19, 250));
+        colorList.add(Color.rgb(247, 223, 13));
+        colorList.add(Color.rgb(55, 226, 243));
+        colorList.add(Color.rgb(255, 0, 126));
     }
 
     public static ArrayList<Color> getColorList() {
