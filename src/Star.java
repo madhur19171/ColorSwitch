@@ -72,10 +72,17 @@ public class Star extends Avatar {
 
     @Override
     public boolean checkVicinity(Ball ball) {
+<<<<<<< Updated upstream
         //If the bottom of the star and top of ball touch, return true.
         double bottomY = cordinate.getY() + star.getScaleY() * star.getFitHeight() / 2;
         //System.out.println(bottomY);
         return ball.getTop().getY() <= bottomY;
+=======
+        //System.out.println(ball.getBall().getBoundsInParent());
+        //System.out.println(star.getBoundsInParent());
+        return ball.getBall().getBoundsInParent().intersects(star.getBoundsInParent());
+        //Fuck You
+>>>>>>> Stashed changes
     }
 
 }
