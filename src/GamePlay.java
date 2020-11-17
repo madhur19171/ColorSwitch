@@ -33,10 +33,14 @@ public class GamePlay {
 
         Switch switches = new Switch(25, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - 700));
 
+
+        Obstacle1 obstacle1 = new Obstacle1(20, star.getCordinate());
+
         //Adding the Ball and star to the pane
         root.getChildren().add(ball.getBall());
         root.getChildren().add(star.getStar());
         root.getChildren().add(switches.getSwitches());
+        root.getChildren().add(obstacle1.getObstacle());
         stage.setScene(scene);
 
 
@@ -87,6 +91,9 @@ public class GamePlay {
                     switched = true;//Once switch has been touched, no more switching.
                     root.getChildren().remove(switches.getSwitches());//Removes from the scene
                 }
+
+                if (obstacle1.checkVicinity(ball))
+                    System.out.println("OBSTACLE COLLISION");
             }
         }.start();
 

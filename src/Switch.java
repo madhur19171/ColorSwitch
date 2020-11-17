@@ -15,8 +15,8 @@ import java.io.IOException;
 
 public class Switch extends Avatar {
 
-    Group switches;
-    AnimationTimer animationTimer;
+    private final Group switches;
+    private final AnimationTimer animationTimer;
 
     public Switch(int size, Cordinate cordinate) throws IOException {
         super(cordinate, Color.ALICEBLUE);

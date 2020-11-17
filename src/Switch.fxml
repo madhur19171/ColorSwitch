@@ -8,10 +8,10 @@
    <children>
       <Group layoutX="300.0" layoutY="176.0">
          <children>
-            <Arc fill="#8c13fb" length="90.0" radiusX="50.0" radiusY="50.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
-            <Arc fill="#f6df0e" length="90.0" radiusX="50.0" radiusY="50.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
-            <Arc fill="#35e2f2" length="90.0" radiusX="50.0" radiusY="50.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
-            <Arc fill="#ff0080" length="90.0" radiusX="50.0" radiusY="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+            <Arc fill="#8E13FA" length="90.0" radiusX="50.0" radiusY="50.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+            <Arc fill="#f7df0d" length="90.0" radiusX="50.0" radiusY="50.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+            <Arc fill="#37E2F3" length="90.0" radiusX="50.0" radiusY="50.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+            <Arc fill="#FF007E" length="90.0" radiusX="50.0" radiusY="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
          </children>
       </Group>
    </children>
