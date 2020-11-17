@@ -45,7 +45,7 @@ public class Ball extends Avatar {
 
     public void jump() {
         velocity = 350; //Velocity of every jump is 350
-        System.out.println("JUMP"); //Debugging purposes
+        //System.out.println("JUMP"); //Debugging purposes
 
         if (animationTimer != null) //If the animation timer already exists, stop it.
             animationTimer.stop();
@@ -60,7 +60,7 @@ public class Ball extends Avatar {
                     return;
                 }
                 double elapsed = (now - lastStamp) / 1000000000.0;//How much time elapsed between
-                                                                    // this frame and previous frame in seconds.
+                // this frame and previous frame in seconds.
                 lastStamp = now;//For next frame.
 
                 cordinate.incY(velocity * elapsed);//Update new Cordinate for the class
@@ -69,6 +69,12 @@ public class Ball extends Avatar {
             }
         };
         animationTimer.start();
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+        ball.setFill(color);
     }
 
     public void freeFall() {
