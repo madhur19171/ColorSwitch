@@ -9,6 +9,11 @@ public class Cordinate {
         this.y = y;
     }
 
+    public Cordinate(Cordinate cordinate) {
+        this.x = cordinate.getX();
+        this.y = cordinate.getY();
+    }
+
     public double getX() {
         return x;
     }
@@ -22,7 +27,7 @@ public class Cordinate {
     }
 
     public void incY(double y) {
-        this.y += y;
+        this.y -= y;
     }
 
     @Override
