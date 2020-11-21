@@ -2,17 +2,25 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Line?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="793.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group fx:id="square_obstacle" layoutX="314.0" layoutY="200.0" translateY="-100.0">
+      <Group fx:id="square_obstacle" layoutX="118.0" layoutY="118.0" translateY="-100.0">
          <children>
             <Line endX="100.0" fill="#8c13fb" startX="-100.0" stroke="#8e13fa" strokeLineCap="BUTT" strokeWidth="35.0" />
             <Line endX="100.0" endY="200.0" fill="#8c13fb" startX="100.0" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="35.0" />
             <Line endX="-100.0" endY="200.0" fill="#8c13fb" startX="-100.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeWidth="35.0" />
             <Line endX="100.0" endY="200.0" fill="#8c13fb" startX="-100.0" startY="200.0" stroke="#ff007e" strokeLineCap="ROUND" strokeWidth="35.0" />
+         </children>
+      </Group>
+      <Group fx:id="circle_obstacle" translateX="400.0" translateY="400.0">
+         <children>
+            <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" stroke="#f7df0d" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="90.0" stroke="#ff007e" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="180.0" stroke="#37e2f3" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="270.0" stroke="#8e13fa" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
          </children>
       </Group>
    </children>

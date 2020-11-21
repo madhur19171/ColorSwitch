@@ -1,10 +1,18 @@
+import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 
 import java.io.IOException;
 
@@ -17,8 +25,14 @@ public class StartSceneController {
     private Button load_game_button;
 
     @FXML
-    void loadGame(MouseEvent event) {
+    private Group stars;
+    
 
+    @FXML
+    void loadGame(MouseEvent event) throws IOException {
+        AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
+        Stage stage = (Stage) load_game_button.getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 
     @FXML
