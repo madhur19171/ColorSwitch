@@ -19,9 +19,7 @@ public class Ball extends Avatar {
     private double velocity;
     private final double acceleration;
     private final Circle ball;
-    //////////////////////////////
-    private Circle burst_ball[]=new Circle[10];
-    //////////////////////////////
+    
     AnimationTimer animationTimer;//After every jump, new Animation timer needs to be created.
 
     public Ball(int size, double acceleration, Cordinate position) {
