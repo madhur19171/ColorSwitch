@@ -1,3 +1,4 @@
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,9 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class GamePlay {
     public Label score_label;
@@ -21,7 +25,7 @@ public class GamePlay {
     private Stage stage;
     private String user_name;
     HashMap<String, Boolean> currentlyActiveKeys = new HashMap<>();
-
+    private boolean show=false;
     //Since This class has provided its own default constructor which will be called by FXML loader,
     //We need to initialize the instance variables using initialize class.
     public void initialize(Stage stage) throws IOException {
@@ -40,10 +44,12 @@ public class GamePlay {
         score_label = (Label) root.lookup("#score_label");
         System.out.println(score_label);
 
-        Switch switches = new Switch(25, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - 700));
+        Switch switches = new Switch(25, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - 800));
 
 
-        Obstacle1 obstacle1 = new Obstacle1(20, star.getCordinate());
+        Obstacle1 obstacle1 = new Obstacle1(40, star.getCordinate());
+        obstacle1.getObstacle().setScaleX(0.9);
+        obstacle1.getObstacle().setScaleY(0.9);
 
         Obstacle2 obstacle2 = new Obstacle2(100, 40, switches.getCordinate());
 
@@ -68,18 +74,21 @@ public class GamePlay {
                 currentlyActiveKeys.remove(event.getCode().toString())
         );
 
+        AnchorPane pauseScene = FXMLLoader.load(getClass().getResource("PauseScene.fxml"));
         //This timer Detects the Key Press Events, And Start vicinity check. Can be extended.
         new AnimationTimer() {
             boolean switched = false;
             boolean stared = false;
-
+            boolean collision = false;
+            boolean overYet=false;					// To check whether the burst animation is overYet or not!!
             @Override
             //Left and Right arrow keys will pause the game
             //Up and Down arrow keys will jump the Ball
             public void handle(long now) {
+            	
                 if (removeActiveKey("LEFT") || removeActiveKey("RIGHT")) {
                     try {
-                        new PauseSceneController().initialize(stage);
+                        new PauseSceneController().initialize();
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -110,18 +119,72 @@ public class GamePlay {
                     root.getChildren().remove(switches.getSwitches());//Removes from the scene
                 }
 
-                if (obstacle1.checkVicinity(ball))
+                if (!collision && obstacle1.checkVicinity(ball)) {
                     System.out.println("OBSTACLE1 COLLISION");
+                    collision = true;
+                    ball.getBall().setVisible(false);
+                    GamePlay p=new GamePlay();
+                    ball.playBurst(root);
+                    
+                    Timer timer=new Timer();				//Introduced a new Timer to set the variable overYet=True after 1 sec, because 1 sec is required for the burst animation to get over
+                    
+                    timer.schedule(new TimerTask() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							overYet=true;
+						}
+                    	
+                    }, 1200);
+                    
+                    
+                    
+                }
 
 
-                if (obstacle2.checkVicinity(ball))
+                if (!collision && obstacle2.checkVicinity(ball)) {
                     System.out.println("OBSTACLE2 COLLISION");
+                    collision = true;
+                    ball.getBall().setVisible(false);
+                    ball.playBurst(root);
+                    
+                    Timer timer=new Timer();				//Introduced a new Timer to set the variable overYet=True after 1.2 sec, because 1 sec is required for the burst animation to get over
+                    
+                    timer.schedule(new TimerTask() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							overYet=true;
+						}
+                    	
+                    }, 1200);
+                    
+                    
+                }
+                
+                if(overYet==true) {							// if overYet=true then put the next scene .
+                	overYet=false;
+                	stage.setScene(new Scene(pauseScene));
+                    try {
+            			new PauseSceneController().initialize();
+            		} catch (IOException e) {
+            			// TODO Auto-generated catch block
+            			e.printStackTrace();
+            		}
+                }
+                
+                
             }
         }.start();
 
         stage.show();
+        
     }
-
+    
+    
+    
     private boolean removeActiveKey(String codeString) {
         Boolean isActive = currentlyActiveKeys.get(codeString);
 
