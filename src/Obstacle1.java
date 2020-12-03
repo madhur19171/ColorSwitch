@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Obstacle1 extends Obstacle {
 
-    private final Group obstacle;
+
     private final AnimationTimer animationTimer;
 
     public Obstacle1(double velocity, Cordinate position) throws IOException {
@@ -42,6 +42,7 @@ public class Obstacle1 extends Obstacle {
         animationTimer.start();
     }
 
+    @Override
     public Group getObstacle() {
         return obstacle;
     }

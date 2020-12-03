@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ColorSwitch:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ColorSwitch_jar</output-path>
+    <root id="archive" name="ColorSwitch.jar">
+      <element id="module-output" name="ColorSwitch" />
+    </root>
+  </artifact>
+</component>
