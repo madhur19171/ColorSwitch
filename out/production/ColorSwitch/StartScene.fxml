@@ -53,5 +53,10 @@
             </ImageView>
          </children>
       </Group>
+      <Button fx:id="exit_game" layoutX="192.0" layoutY="788.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="80.0" prefWidth="267.0" style="-fx-background-color: rgb(19, 110, 224); -fx-font-size: 35;" text="Exit Game" textAlignment="CENTER" textFill="#eefefe">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="28.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

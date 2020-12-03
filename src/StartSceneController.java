@@ -26,6 +26,9 @@ public class StartSceneController {
 
     @FXML
     private Group stars;
+
+    @FXML
+    private Button exit_game;
     
 
     @FXML
@@ -42,4 +45,9 @@ public class StartSceneController {
         stage.setScene(new Scene(root));
     }
 
+    @FXML
+    void exit(MouseEvent event) {
+        Stage stage = (Stage) load_game_button.getScene().getWindow();
+        stage.close();
+    }
 }
