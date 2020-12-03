@@ -28,4 +28,6 @@ public abstract class Avatar implements Positionable, Colorable {
     public void setColor(Color color) {
         this.color = color;
     }
+    
+    // Bro i wish u die a virgin!!!!
 }
