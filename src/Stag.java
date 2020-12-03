@@ -1,12 +1,12 @@
 import javafx.animation.AnimationTimer;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Stag {
     private final GamePlay mainGame;
@@ -64,6 +64,7 @@ public class Stag {
             boolean switched = false;
             boolean stared = false;
             boolean collision = false;
+            boolean overYet = false;                    // To check whether the burst animation is overYet or not!!
 
             @Override
             //Left and Right arrow keys will pause the game
@@ -103,23 +104,34 @@ public class Stag {
                 if (!collision && obstacle.checkVicinity(ball)) {
                     System.out.println("OBSTACLE1 COLLISION");
                     collision = true;
+                    ball.getBall().setVisible(false);
+                    ball.playBurst(root);
+
+                    Timer timer = new Timer();                //Introduced a new Timer to set the variable overYet=True after 1 sec, because 1 sec is required for the burst animation to get over
+
+                    timer.schedule(new TimerTask() {
+
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            overYet = true;
+                        }
+
+                    }, 1200);
+
+
+                }
+
+                if (overYet) {                            // if overYet=true then put the next scene .
+                    overYet = false;
                     try {
                         pauseSceneController.initialize(stage);
                     } catch (IOException e) {
+                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }
-
-
-//                if (!collision && obstacle2.checkVicinity(ball)) {
-//                    System.out.println("OBSTACLE2 COLLISION");
-//                    collision = true;
-//                    try {
-//                        pauseSceneController.initialize(stage);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
+                
             }
         }.start();
 
