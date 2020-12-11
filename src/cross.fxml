@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Group layoutX="83.0" layoutY="191.0">
+         <children>
+            <Line endX="100.0" layoutX="-10.0" layoutY="146.0" startX="-22.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="145.0" layoutY="-10.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#ff007e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="144.0" layoutY="117.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="100.0" layoutX="111.0" layoutY="146.0" startX="-22.0" stroke="#8e13fa" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+         </children>
+      </Group>
+      <Group layoutX="346.0" layoutY="192.0" rotate="180.0">
+         <children>
+            <Line endX="100.0" layoutX="-10.0" layoutY="146.0" startX="-22.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="145.0" layoutY="-10.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="144.0" layoutY="117.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#ff007e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="100.0" layoutX="111.0" layoutY="146.0" startX="-22.0" stroke="#8e13fa" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+         </children>
+      </Group>
+   </children>
+</AnchorPane>

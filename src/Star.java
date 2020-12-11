@@ -1,35 +1,39 @@
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ScaleTransition;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.SVGPath;
+import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Star extends Avatar {
 
-    private int size;
-    private final ImageView star;
-    private ScaleTransition scaleTransition;
+    private double size;
+    private final SVGPath star;
+    private final ScaleTransition scaleTransition;
 
-    public Star(int size, Cordinate position) throws FileNotFoundException {
+    public Star(double size, Cordinate position) throws IOException {
         super(position, Color.ALICEBLUE);
         this.size = size;//Not even required
 
         //Making Star using Star image
-        Image image = new Image(new FileInputStream("src\\images\\Star.jpg"));
-        star = new ImageView(image);
+        AnchorPane root = (FXMLLoader.load(getClass().getResource("Star.fxml")));
+        star = (SVGPath) root.getChildren().get(0);
 
-        //Fitting the Star image in a 68X60 pixel box.
-        star.setFitHeight(size);
-        star.setFitWidth(size / 60.0 * 68);
+        star.setTranslateX(cordinate.getX());
+        star.setTranslateY(cordinate.getY());
 
-        //Since the setX and setY will anchor the image with the top left corner and we are given cordinates of Center,
-        //We need to compute the cordinate of corner using the cordinate of center and position the Start accordingly.
-        star.relocate(cordinate.getX() - star.getFitWidth() / 2, cordinate.getY() - star.getFitHeight() / 2);
+        star.setScaleX(size);
+        star.setScaleY(size);
 
         //Animating the Star
         float scale = 0.1f;
@@ -53,7 +57,7 @@ public class Star extends Avatar {
 //        }.start();
     }
 
-    public ImageView getStar() {
+    public SVGPath getStar() {
         return star;
     }
 
@@ -66,13 +70,14 @@ public class Star extends Avatar {
     public void setCordinate(Cordinate cordinate) {
         //This will help in moving the star using only its center cordinates.
         this.cordinate = cordinate;
-        star.setX(cordinate.getX() - star.getFitWidth() / 2);
-        star.setY(cordinate.getY() - star.getFitHeight() / 2);
+        star.setTranslateX(cordinate.getX());
+        star.setTranslateY(cordinate.getY());
     }
 
     @Override
     public boolean checkVicinity(Ball ball) {
-        return ball.getBall().getBoundsInParent().intersects(star.getBoundsInParent());
+        Shape intersect = Shape.intersect(star, ball.getBall());
+        return intersect.getBoundsInLocal().getWidth() != -1;
         //Fuck Yourself
     }
 

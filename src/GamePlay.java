@@ -42,7 +42,18 @@ public class GamePlay {
 
 
         this.stag = new Stag(this, ball);
-        stag.initialize(root);
+        stag.initialize(root, 0);
+
+        Stag stag2 = new Stag(this, ball);
+        stag2.initialize(root, -800);
+
+        Stag stag3 = new Stag(this, ball);
+        stag3.initialize(root, -1600);
+
+        Stag stag4 = new Stag(this, ball);
+        stag4.initialize(root, -2400);
+
+        root.getChildren().add(ball.getBall());
 
         stage.setScene(scene);
         stage.show();
