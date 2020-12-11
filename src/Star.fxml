@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.SVGPath?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Star">
+   <children>
+      <SVGPath content="m 138.52989,162.79218 -28.51518,-14.32654 -27.967559,15.3682 4.813672,-31.5467 -23.258469,-21.84969 31.490196,-5.17039 13.59303,-28.872045 14.64834,28.351215 31.65942,4.00579 -22.43702,22.69241 z" fill="WHITE" layoutX="-110.0" layoutY="-120.0" />
+   </children>
+</AnchorPane>

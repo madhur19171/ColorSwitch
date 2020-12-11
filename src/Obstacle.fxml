@@ -6,22 +6,33 @@
 <?import javafx.scene.shape.Line?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="793.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Group fx:id="square_obstacle" layoutX="118.0" layoutY="118.0" scaleX="0.8" scaleY="0.8" translateY="-100.0">
-         <children>
-            <Line endX="100.0" fill="#8c13fb" startX="-100.0" stroke="#8e13fa" strokeLineCap="BUTT" strokeWidth="35.0" />
-            <Line endX="100.0" endY="200.0" fill="#8c13fb" startX="100.0" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="35.0" />
-            <Line endX="-100.0" endY="200.0" fill="#8c13fb" startX="-100.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeWidth="35.0" />
-            <Line endX="100.0" endY="200.0" fill="#8c13fb" startX="-100.0" startY="200.0" stroke="#ff007e" strokeLineCap="ROUND" strokeWidth="35.0" />
-         </children>
-      </Group>
-      <Group fx:id="circle_obstacle" translateX="400.0" translateY="400.0">
-         <children>
-            <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" stroke="#f7df0d" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
-            <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="90.0" stroke="#ff007e" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
-            <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="180.0" stroke="#37e2f3" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
-            <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="270.0" stroke="#8e13fa" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
-         </children>
-      </Group>
-   </children>
+   <Group fx:id="square_obstacle" scaleX="0.8" scaleY="0.8" translateY="-100.0">
+      <Line endX="100.0" fill="#8c13fb" startX="-100.0" stroke="#8e13fa" strokeLineCap="BUTT" strokeWidth="35.0" />
+      <Line endX="100.0" endY="200.0" fill="#8c13fb" startX="100.0" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="35.0" />
+      <Line endX="-100.0" endY="200.0" fill="#8c13fb" startX="-100.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeWidth="35.0" />
+      <Line endX="100.0" endY="200.0" fill="#8c13fb" startX="-100.0" startY="200.0" stroke="#ff007e" strokeLineCap="ROUND" strokeWidth="35.0" />
+   </Group>
+   <Group fx:id="circle_obstacle" translateX="200.0" translateY="400.0">
+      <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" stroke="#f7df0d" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
+      <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="90.0" stroke="#ff007e" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
+      <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="180.0" stroke="#37e2f3" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
+      <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="270.0" stroke="#8e13fa" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
+   </Group>
+   <Group fx:id="cross_obstacle" layoutX="42.0" layoutY="-132.0">
+      <children>
+      
+         <Group translateX="-263.0">
+            <Line endX="100.0" layoutX="-10.0" layoutY="146.0" startX="-22.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="145.0" layoutY="-10.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#ff007e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="144.0" layoutY="117.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="100.0" layoutX="111.0" layoutY="146.0" startX="-22.0" stroke="#8e13fa" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+         </Group>
+         <Group rotate="180.0">
+            <Line endX="100.0" layoutX="-10.0" layoutY="146.0" startX="-22.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="145.0" layoutY="-10.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="144.0" layoutY="117.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#ff007e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <Line endX="100.0" layoutX="111.0" layoutY="146.0" startX="-22.0" stroke="#8e13fa" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+         </Group>
+      </children>
+   </Group>
 </AnchorPane>

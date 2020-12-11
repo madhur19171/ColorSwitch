@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -73,9 +75,16 @@ public class Switch extends Avatar {
     }
 
     public boolean checkVicinity(Ball ball) {
-        if (ball.getBall().getBoundsInParent().intersects(switches.getBoundsInParent())) {
-            System.out.println("Switch");
-            return true;
+//        if (ball.getBall().localToScreen(ball.getBall().getBoundsInParent()).intersects(switches.localToScreen(switches.getBoundsInParent()))) {
+//            System.out.println("Switch");
+//            return true;
+//        }
+
+        for (Node arc : switches.getChildren()) {
+            Shape intersect = Shape.intersect((Arc) arc, ball.getBall());
+            if ((intersect.getBoundsInLocal().getWidth() != -1)) {
+                return true;
+            }
         }
         return false;
     }

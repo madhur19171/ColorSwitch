@@ -1,9 +1,11 @@
 import javafx.animation.AnimationTimer;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,6 +18,8 @@ public class Stag {
     private final Ball ball;
     private final Scene scene;
     private final Stage stage;
+    private final Group avatarGroup;
+    private static ArrayList<Group> avatarGroupArray = new ArrayList<>();
     HashMap<String, Boolean> currentlyActiveKeys = new HashMap<>();
 
     public Stag(GamePlay mainGame, Ball ball) {
@@ -23,26 +27,32 @@ public class Stag {
         this.ball = ball;
         scene = mainGame.getScene();
         stage = mainGame.getStage();
+        avatarGroup = new Group();
+        avatarGroupArray.add(avatarGroup);
     }
 
-    public void initialize(AnchorPane root) throws IOException {
+    public void initialize(AnchorPane root, int translateGroup) throws IOException {
         //Creating Star object for initial development purposes only.
         //All Avatar objects other than Ball will be created in Stag Class.
-        star = new Star(40, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - 400));
+        star = new Star(0.5, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - 800));
 
-        switches = new Switch(25, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - 800));
+        switches = new Switch(25, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - 400));
 
-        obstacle = new Obstacle1(40, star.getCordinate());
-        obstacle.getObstacle().setScaleX(0.9);
-        obstacle.getObstacle().setScaleY(0.9);
+
+        obstacle = new Obstacle4(40, star.getCordinate());
+        obstacle.getObstacle().setScaleX(1);
+        obstacle.getObstacle().setScaleY(1);
 
         //Obstacle2 obstacle2 = new Obstacle2(100, 40, switches.getCordinate());
 
         //Adding the Ball and star to the pane
-        root.getChildren().add(ball.getBall());
-        root.getChildren().add(star.getStar());
-        root.getChildren().add(switches.getSwitches());
-        root.getChildren().add(obstacle.getObstacle());
+        avatarGroup.setLayoutY(translateGroup);
+        avatarGroup.getChildren().add(star.getStar());
+        avatarGroup.getChildren().add(switches.getSwitches());
+        avatarGroup.getChildren().add(obstacle.getObstacle());
+        root.getChildren().add(avatarGroup);
+//        root.getChildren().add(ball.getBall());
+
         //root.getChildren().add(obstacle2.getObstacle());
 
 
@@ -50,6 +60,7 @@ public class Stag {
             String codeString = event.getCode().toString();
             if (!currentlyActiveKeys.containsKey(codeString)) {
                 currentlyActiveKeys.put(codeString, true);
+                System.out.println("1");
             }
         });
 
@@ -58,6 +69,7 @@ public class Stag {
                 currentlyActiveKeys.remove(event.getCode().toString())
         );
 
+
         PauseSceneController pauseSceneController = new PauseSceneController();
         //This timer Detects the Key Press Events, And Start vicinity check. Can be extended.
         new AnimationTimer() {
@@ -65,11 +77,19 @@ public class Stag {
             boolean stared = false;
             boolean collision = false;
             boolean overYet = false;                    // To check whether the burst animation is overYet or not!!
+            boolean moved = false;
 
             @Override
             //Left and Right arrow keys will pause the game
             //Up and Down arrow keys will jump the Ball
             public void handle(long now) {
+
+//                if (ball.getCordinate().getY() < scene.getHeight() / 2 && !moved) {
+//                    System.out.println("MOVED");
+//                    avatarGroup.setTranslateY(100);
+//                    moved = true;
+//                }
+
                 if (removeActiveKey("LEFT") || removeActiveKey("RIGHT")) {
                     try {
                         pauseSceneController.initialize(stage);
@@ -79,26 +99,24 @@ public class Stag {
                 }
 
 
-                if (removeActiveKey("UP")) {
-                    ball.jump();
+                if (removeActiveKey("UP") || removeActiveKey("DOWN")) {
+                    ball.jump(avatarGroupArray);
                 }
 
-                if (removeActiveKey("DOWN")) {
-                    ball.jump();
-                }
+
                 //If Ball has touched the star, the star will disappear.
                 //The animation has to be added as well.
                 if (!stared && star.checkVicinity(ball)) {
                     stared = true;//Once stared, no more score increment.
                     star.killStar();//Stops The animation
-                    root.getChildren().remove(star.getStar());//Removes from the scene
+                    avatarGroup.getChildren().remove(star.getStar());//Removes from the scene
                     mainGame.increaseScore();
                 }
                 if (!switched && switches.checkVicinity(ball)) {
                     switches.switchColor(ball);
                     switches.killSwitch();//Stops the animation
                     switched = true;//Once switch has been touched, no more switching.
-                    root.getChildren().remove(switches.getSwitches());//Removes from the scene
+                    avatarGroup.getChildren().remove(switches.getSwitches());//Removes from the scene
                 }
 
                 if (!collision && obstacle.checkVicinity(ball)) {
@@ -131,7 +149,7 @@ public class Stag {
                         e.printStackTrace();
                     }
                 }
-                
+
             }
         }.start();
 
