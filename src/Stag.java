@@ -19,15 +19,17 @@ public class Stag {
     private final Scene scene;
     private final Stage stage;
     private final Group avatarGroup;
+    private final int obs;
     private static ArrayList<Group> avatarGroupArray = new ArrayList<>();
     HashMap<String, Boolean> currentlyActiveKeys = new HashMap<>();
 
-    public Stag(GamePlay mainGame, Ball ball) {
+    public Stag(GamePlay mainGame, Ball ball, int obs) {
         this.mainGame = mainGame;
         this.ball = ball;
         scene = mainGame.getScene();
         stage = mainGame.getStage();
         avatarGroup = new Group();
+        this.obs = obs;
         avatarGroupArray.add(avatarGroup);
     }
 
@@ -39,11 +41,20 @@ public class Stag {
         switches = new Switch(25, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - 400));
 
 
-        obstacle = new Obstacle4(40, star.getCordinate());
-        obstacle.getObstacle().setScaleX(1);
-        obstacle.getObstacle().setScaleY(1);
+        //obstacle = new Obstacle4(40, star.getCordinate());
+        switch (obs) {
+            case 1:
+                obstacle = new Obstacle1(1, 60, star.getCordinate());
+                break;
+            case 2:
+                obstacle = new Obstacle2(2, 60, star.getCordinate());
+                break;
+            case 3:
+                obstacle = new Obstacle4(60, switches.getCordinate());
+                break;
 
-        //Obstacle2 obstacle2 = new Obstacle2(100, 40, switches.getCordinate());
+        }
+
 
         //Adding the Ball and star to the pane
         avatarGroup.setLayoutY(translateGroup);
@@ -60,7 +71,6 @@ public class Stag {
             String codeString = event.getCode().toString();
             if (!currentlyActiveKeys.containsKey(codeString)) {
                 currentlyActiveKeys.put(codeString, true);
-                System.out.println("1");
             }
         });
 
@@ -119,6 +129,25 @@ public class Stag {
                     avatarGroup.getChildren().remove(switches.getSwitches());//Removes from the scene
                 }
 
+                if(!collision && ball.getCordinate().getY() > scene.getHeight()){
+                    System.out.println("Ball Falls Down!");
+                    collision = true;
+                    ball.getBall().setVisible(false);
+                    ball.playBurst(root);
+
+                    Timer timer = new Timer();                //Introduced a new Timer to set the variable overYet=True after 1 sec, because 1 sec is required for the burst animation to get over
+
+                    timer.schedule(new TimerTask() {
+
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            overYet = true;
+                        }
+
+                    }, 1200);
+                }
+
                 if (!collision && obstacle.checkVicinity(ball)) {
                     System.out.println("OBSTACLE1 COLLISION");
                     collision = true;
@@ -139,6 +168,8 @@ public class Stag {
 
 
                 }
+
+//                if(ball.getCordinate().getY() > )
 
                 if (overYet) {                            // if overYet=true then put the next scene .
                     overYet = false;

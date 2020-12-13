@@ -8,6 +8,7 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Ball extends Avatar {
 
@@ -20,7 +21,7 @@ public class Ball extends Avatar {
     AnimationTimer animationTimer;//After every jump, new Animation timer needs to be created.
 
     public Ball(int size, double acceleration, Cordinate position) {
-        super(position, ColorList.getColorList().get(0));
+        super(position, ColorList.getColorList().get(new Random().nextInt(4)));
         this.size = size;
         this.acceleration = acceleration;
         velocity = 0.0;
@@ -74,7 +75,7 @@ public class Ball extends Avatar {
                 // this frame and previous frame in seconds.
                 lastStamp = now;//For next frame.
 
-                if (cordinate.getY() < threshold) {
+                if (cordinate.getY() < threshold && avatarGroupArray.get(0).getTranslateY() > -50) {
                     for (Group avatarGroup : avatarGroupArray)
                         avatarGroup.setTranslateY(avatarGroup.getTranslateY() + velocity * elapsed);
                 } else {
@@ -92,6 +93,7 @@ public class Ball extends Avatar {
         this.color = color;
         ball.setFill(color);
     }
+
 
     public void freeFall() {
         //cordinate.incY(velocity);
