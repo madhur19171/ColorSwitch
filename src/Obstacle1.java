@@ -14,13 +14,15 @@ public class Obstacle1 extends Obstacle {
 
     private final AnimationTimer animationTimer;
 
-    public Obstacle1(double velocity, Cordinate position) throws IOException {
+    public Obstacle1(int size, double velocity, Cordinate position) throws IOException {
         super(velocity, position, ColorList.getColorList().get(0));
         AnchorPane root = (FXMLLoader.load(getClass().getResource("Obstacle.fxml")));
 
         obstacle = (Group) root.lookup("#square_obstacle");
         obstacle.setLayoutX(cordinate.getX());
         obstacle.setLayoutY(cordinate.getY());
+        obstacle.setScaleX(size);
+        obstacle.setScaleY(size);
 
 
         animationTimer = new AnimationTimer() {

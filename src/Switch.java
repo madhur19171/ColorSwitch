@@ -14,6 +14,7 @@ import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class Switch extends Avatar {
 
@@ -53,11 +54,12 @@ public class Switch extends Avatar {
 
 
     public void switchColor(Ball ball) {
-        for (Color color : ColorList.getColorList())
-            if (!ball.getColor().equals(color)) {
-                ball.setColor(color);
-                return;
-            }
+        Color currentColor = ball.getColor();
+        Random random = new Random();
+        while (ball.getColor() == currentColor) {
+            int ind = random.nextInt(4);
+            ball.setColor(ColorList.getColorList().get(ind));
+        }
     }
 
     public Group getSwitches() {

@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.shape.Shape;
 
 import java.io.IOException;
@@ -15,18 +16,16 @@ public class Obstacle2 extends Obstacle {
     private final Group obstacle;
     private final AnimationTimer animationTimer;
 
-    public Obstacle2(int radius, double velocity, Cordinate position) throws IOException {
+    public Obstacle2(int size, double velocity, Cordinate position) throws IOException {
         super(velocity, position, ColorList.getColorList().get(0));
         AnchorPane root = (FXMLLoader.load(getClass().getResource("Obstacle.fxml")));
 
         obstacle = (Group) root.lookup("#circle_obstacle");
         obstacle.setTranslateX(cordinate.getX());
         obstacle.setTranslateY(cordinate.getY());
-        for (Node arc : obstacle.getChildren()) {
-            ((Arc) arc).setRadiusX(radius);
-            ((Arc) arc).setRadiusY(radius);
-        }
-
+        obstacle.setScaleX(size);
+        obstacle.setScaleY(size);
+        System.out.println(obstacle.getScaleX());
 
         animationTimer = new AnimationTimer() {
             long lastStamp = 0;
@@ -64,8 +63,8 @@ public class Obstacle2 extends Obstacle {
     @Override
     boolean checkVicinity(Ball ball) {
         for (Node arc : obstacle.getChildren()) {
-            Shape intersect = Shape.intersect((Arc) arc, ball.getBall());
-            if ((intersect.getBoundsInLocal().getWidth() != -1) && !((Arc) arc).getStroke().equals(ball.getBall().getFill())) {
+            Shape intersect = Shape.intersect((SVGPath) arc, ball.getBall());
+            if ((intersect.getBoundsInLocal().getWidth() != -1) && !((SVGPath) arc).getFill().equals(ball.getBall().getFill())) {
                 return true;
             }
         }

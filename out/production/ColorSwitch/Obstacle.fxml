@@ -2,8 +2,8 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.SVGPath?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="793.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <Group fx:id="square_obstacle" scaleX="0.8" scaleY="0.8" translateY="-100.0">
@@ -12,26 +12,31 @@
       <Line endX="-100.0" endY="200.0" fill="#8c13fb" startX="-100.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeWidth="35.0" />
       <Line endX="100.0" endY="200.0" fill="#8c13fb" startX="-100.0" startY="200.0" stroke="#ff007e" strokeLineCap="ROUND" strokeWidth="35.0" />
    </Group>
-   <Group fx:id="circle_obstacle" translateX="200.0" translateY="400.0">
-      <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" stroke="#f7df0d" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
-      <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="90.0" stroke="#ff007e" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
-      <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="180.0" stroke="#37e2f3" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
-      <Arc fill="#1f93ff00" length="90.0" radiusX="150.0" radiusY="150.0" startAngle="270.0" stroke="#8e13fa" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="20.0" />
-   </Group>
-   <Group fx:id="cross_obstacle" layoutX="42.0" layoutY="-132.0">
+   <Group fx:id="circle_obstacle" layoutX="-108.0" layoutY="-105.0">
       <children>
-      
+         <SVGPath content="m 52.718178,104.17398 h -16.92248 a 70.91758,70.91758 0 0 0 70.917132,70.91711 V 158.16861 A 53.994967,53.994967 0 0 1 52.718178,104.17398 Z" fill="#37e2f3" />
+         <SVGPath content="m 160.70748,104.17398 h 16.92248 a 70.91758,70.91758 0 0 1 -70.91713,70.91711 v -16.92248 a 53.994967,53.994967 0 0 0 53.99465,-53.99463 z" fill="#8e13fa" />
+         <SVGPath content="M 52.718178,104.17398 H 35.795698 A 70.91758,70.91758 0 0 1 106.71283,33.25687 v 16.92248 a 53.994967,53.994967 0 0 0 -53.994652,53.99463 z" fill="#ff007e" />
+         <SVGPath content="m 160.70748,104.17398 h 16.92248 A 70.91758,70.91758 0 0 0 106.71283,33.25687 v 16.92248 a 53.994967,53.994967 0 0 1 53.99465,53.99463 z" fill="#f7df0d" />
+      </children>
+   </Group>
+   <Group fx:id="cross_obstacle" layoutX="52.0" layoutY="-122.0">
+      <children>
          <Group translateX="-263.0">
-            <Line endX="100.0" layoutX="-10.0" layoutY="146.0" startX="-22.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
-            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="145.0" layoutY="-10.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#ff007e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
-            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="144.0" layoutY="117.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
-            <Line endX="100.0" layoutX="111.0" layoutY="146.0" startX="-22.0" stroke="#8e13fa" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <children>
+               <Line endX="100.0" layoutX="-10.0" layoutY="146.0" startX="-22.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+               <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="145.0" layoutY="-10.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#ff007e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+               <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="144.0" layoutY="117.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+               <Line endX="100.0" layoutX="111.0" layoutY="146.0" startX="-22.0" stroke="#8e13fa" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            </children>
          </Group>
          <Group rotate="180.0">
-            <Line endX="100.0" layoutX="-10.0" layoutY="146.0" startX="-22.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
-            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="145.0" layoutY="-10.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
-            <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="144.0" layoutY="117.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#ff007e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
-            <Line endX="100.0" layoutX="111.0" layoutY="146.0" startX="-22.0" stroke="#8e13fa" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            <children>
+               <Line endX="100.0" layoutX="-10.0" layoutY="146.0" startX="-22.0" stroke="#37e2f3" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+               <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="145.0" layoutY="-10.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#f7df0d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+               <Line endX="8.992488861083984" endY="92.60366821289062" layoutX="144.0" layoutY="117.0" rotate="90.0" startX="-117.32829284667969" startY="91.69978332519531" stroke="#ff007e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+               <Line endX="100.0" layoutX="111.0" layoutY="146.0" startX="-22.0" stroke="#8e13fa" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" />
+            </children>
          </Group>
       </children>
    </Group>

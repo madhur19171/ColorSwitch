@@ -41,16 +41,16 @@ public class GamePlay {
         ball = new Ball(20, 15, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - ballOffsetY));
 
 
-        this.stag = new Stag(this, ball);
+        this.stag = new Stag(this, ball, 1);
         stag.initialize(root, 0);
 
-        Stag stag2 = new Stag(this, ball);
+        Stag stag2 = new Stag(this, ball, 2);
         stag2.initialize(root, -800);
 
-        Stag stag3 = new Stag(this, ball);
+        Stag stag3 = new Stag(this, ball, 3);
         stag3.initialize(root, -1600);
 
-        Stag stag4 = new Stag(this, ball);
+        Stag stag4 = new Stag(this, ball, 1);
         stag4.initialize(root, -2400);
 
         root.getChildren().add(ball.getBall());
