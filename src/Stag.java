@@ -196,4 +196,11 @@ public class Stag {
             return false;
         }
     }
+    
+     private GameState getGame() {				//hopefully returns the current state of the game!!!
+    	return new GameState(this.obstacle,this.switches,
+    			this.star,this.ball,this.scene,this.stage,this.avatarGroup,this.obs,this.avatarGroupArray,
+    			this.currentlyActiveKeys,this.mainGame.score_label,this.mainGame.getLevel(),this.mainGame.getScore(),
+    			this.mainGame.getUserName());
+    }
 }
