@@ -174,7 +174,7 @@ public class Stag {
                 if (overYet) {                            // if overYet=true then put the next scene .
                     overYet = false;
                     try {
-                        pauseSceneController.initialize(stage);
+                        pauseSceneController.initialize(stage,getGame());
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
