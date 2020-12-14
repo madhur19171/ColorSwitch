@@ -72,4 +72,13 @@ public class GamePlay {
         score++;
         score_label.setText("Score: " + score);
     }
+    
+    public int getLevel() {
+		return level;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+	
 }
