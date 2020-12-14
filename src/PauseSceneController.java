@@ -83,7 +83,7 @@ public class PauseSceneController {
 
     @FXML
     void saveClicked(MouseEvent event) throws IOException {
-        System.out.println("You clicked here 2");
+        new SaveGame(gameState).saveIntoFile();
         JFrame f = new JFrame();
         JOptionPane.showMessageDialog(f, "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
         Stage stage = (Stage) resumeBtn.getScene().getWindow();
