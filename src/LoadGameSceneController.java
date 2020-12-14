@@ -22,9 +22,9 @@ public class LoadGameSceneController {
     @FXML
     private Label manan;
 
-    @FXML
-    void madhurClicked(MouseEvent event) {
-        System.out.println("Clicked");
+   @FXML
+    void madhurClicked(MouseEvent event) throws ClassNotFoundException {		// calls loadgame from SaveGame class!!!
+        GameState game=new SaveGame().loadGame("kumar");
         madhur.setText("Kumar");
     }
 
