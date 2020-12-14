@@ -14,7 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-public class GamePlay {
+public class GamePlay implements Serializable{
     public Label score_label;
     private Ball ball;
     private int level;
