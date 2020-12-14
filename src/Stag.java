@@ -102,7 +102,7 @@ public class Stag {
 
                 if (removeActiveKey("LEFT") || removeActiveKey("RIGHT")) {
                     try {
-                        pauseSceneController.initialize(stage);
+                        pauseSceneController.initialize(stage,getGame());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
