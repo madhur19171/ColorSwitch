@@ -36,9 +36,11 @@ public class PauseSceneController {
     private ImageView saveBtn;
 
     private Stage stage;
-
+    private GameState gameState;
+    
     @FXML
-    public void initialize(Stage stage) throws IOException {
+    public void initialize(Stage stage,GameState game) throws IOException {
+    	this.gameState=game;
 
         AnchorPane root = FXMLLoader.load(getClass().getResource("PauseScene.fxml"));
         stage.setScene(new Scene(root));
