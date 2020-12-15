@@ -62,6 +62,10 @@ public class SaveGame implements Serializable{
 			FileInputStream fileIn=new FileInputStream("src/Records.txt");
 			ObjectInputStream in=new ObjectInputStream(fileIn);
 			list=(HashMap<String,GameState>) in.readObject();
+			if(list==null) {
+				System.out.println("File is empty");
+				return new HashMap<String,GameState>();
+			}
 			in.close();
 			fileIn.close();
 		}catch(FileNotFoundException e) {
