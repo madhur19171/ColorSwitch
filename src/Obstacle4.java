@@ -14,6 +14,7 @@ import javafx.util.Duration;
 public class Obstacle4 extends Obstacle {
 
     private final Group obstacle;
+    private final AnimationTimer animationTimer;
 
     public Obstacle4(double velocity, Cordinate position) throws IOException {
 
@@ -32,7 +33,7 @@ public class Obstacle4 extends Obstacle {
         System.out.println(obstacle.getTranslateX() + " " + obstacle.getTranslateY());
         System.out.println(obstacle.getLayoutX() + " " + obstacle.getLayoutY());
 
-        AnimationTimer animationTimer = new AnimationTimer() {
+        animationTimer = new AnimationTimer() {
             long lastStamp = 0;
             double angle = 0;
 
@@ -74,6 +75,8 @@ public class Obstacle4 extends Obstacle {
         return false;
     }
 
+
+
     @Override
     public Cordinate getCordinate() {
         return cordinate;
@@ -87,4 +90,8 @@ public class Obstacle4 extends Obstacle {
         obstacle.setTranslateY(cordinate.getY());
     }
 
+    @Override
+    public AnimationTimer getAnimationTimer() {
+        return animationTimer;
+    }
 }

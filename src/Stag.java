@@ -11,6 +11,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Stag {
+
     private final GamePlay mainGame;
     private Obstacle obstacle;
     private Switch switches;
@@ -33,8 +34,13 @@ public class Stag {
         avatarGroupArray.add(avatarGroup);
     }
 
+    public Group getAvatarGroup() {
+        return avatarGroup;
+    }
+
     public void initialize(AnchorPane root, int translateGroup) throws IOException {
         //Creating Star object for initial development purposes only.
+
         //All Avatar objects other than Ball will be created in Stag Class.
         star = new Star(0.5, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - 800));
 
@@ -57,7 +63,7 @@ public class Stag {
 
 
         //Adding the Ball and star to the pane
-        avatarGroup.setLayoutY(translateGroup);
+        avatarGroup.setTranslateY(translateGroup);
         avatarGroup.getChildren().add(star.getStar());
         avatarGroup.getChildren().add(switches.getSwitches());
         avatarGroup.getChildren().add(obstacle.getObstacle());
@@ -102,7 +108,7 @@ public class Stag {
 
                 if (removeActiveKey("LEFT") || removeActiveKey("RIGHT")) {
                     try {
-                        pauseSceneController.initialize(stage);
+                        pauseSceneController.initialize(stage, mainGame);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -129,10 +135,12 @@ public class Stag {
                     avatarGroup.getChildren().remove(switches.getSwitches());//Removes from the scene
                 }
 
-                if(!collision && ball.getCordinate().getY() > scene.getHeight()){
+                if (!collision && ball.getCordinate().getY() > scene.getHeight()) {
                     System.out.println("Ball Falls Down!");
                     collision = true;
                     ball.getBall().setVisible(false);
+                    obstacle.getAnimationTimer().stop();
+                    ball.getAnimationTimer().stop();
                     ball.playBurst(root);
 
                     Timer timer = new Timer();                //Introduced a new Timer to set the variable overYet=True after 1 sec, because 1 sec is required for the burst animation to get over
@@ -174,7 +182,7 @@ public class Stag {
                 if (overYet) {                            // if overYet=true then put the next scene .
                     overYet = false;
                     try {
-                        pauseSceneController.initialize(stage);
+                        pauseSceneController.initialize(stage, mainGame);
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();

@@ -1,7 +1,8 @@
+import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
-public abstract class Obstacle extends Avatar{
+public abstract class Obstacle extends Avatar {
 
     protected double velocity;
     protected Group obstacle;
@@ -13,6 +14,8 @@ public abstract class Obstacle extends Avatar{
 
     @Override
     abstract boolean checkVicinity(Ball ball);
+
+    abstract AnimationTimer getAnimationTimer();
 
     public Group getObstacle() {
         return obstacle;

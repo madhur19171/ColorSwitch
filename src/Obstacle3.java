@@ -45,6 +45,10 @@ public class Obstacle3 extends Obstacle{
 
 	}
 
+	public AnimationTimer getAnimationTimer() {
+		return animationTimer;
+	}
+
 	@Override
 	public Group getObstacle() {
         return obstacle;

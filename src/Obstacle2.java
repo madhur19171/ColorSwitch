@@ -46,6 +46,10 @@ public class Obstacle2 extends Obstacle {
         animationTimer.start();
     }
 
+    public AnimationTimer getAnimationTimer() {
+        return animationTimer;
+    }
+
     public Group getObstacle() {
         return obstacle;
     }

@@ -9,10 +9,7 @@ import javafx.scene.control.Label;
 
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
 
 public class GamePlay {
     public Label score_label;
@@ -23,11 +20,25 @@ public class GamePlay {
     private Stage stage;
     private Stag stag;
     private String user_name;
+    private ArrayList<Stag> stagArrayList;
     HashMap<String, Boolean> currentlyActiveKeys = new HashMap<>();
     private boolean show = false;
 
     //Since This class has provided its own default constructor which will be called by FXML loader,
     //We need to initialize the instance variables using initialize class.
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
     public void initialize(Stage stage) throws IOException {
         this.stage = stage;
         AnchorPane root = FXMLLoader.load(getClass().getResource("GamePlay.fxml"));
@@ -40,18 +51,43 @@ public class GamePlay {
         //Creating Ball Object
         ball = new Ball(20, 15, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - ballOffsetY));
 
+        stagArrayList = new ArrayList<>(0);
 
         this.stag = new Stag(this, ball, 1);
         stag.initialize(root, 0);
+        stagArrayList.add(stag);
+        GamePlay currentObject = this;
 
-        Stag stag2 = new Stag(this, ball, 2);
-        stag2.initialize(root, -800);
+        new AnimationTimer() {
+            int i = 1;
+            Random random = new Random();
 
-        Stag stag3 = new Stag(this, ball, 3);
-        stag3.initialize(root, -1600);
+            @Override
+            public void handle(long now) {
+                //System.out.println(stagArrayList.get(stagArrayList.size() - 1).getAvatarGroup().getTranslateY());
+                if (stagArrayList.get(stagArrayList.size() - 1).getAvatarGroup().getTranslateY() > 0) {
+                    try {
+                        i = random.nextInt(3);
+                        Stag newStage = new Stag(currentObject, ball, ++i);
+//                        System.out.println(i);
+                        stagArrayList.add(newStage);
+                        newStage.initialize(root, (int) stagArrayList.get(stagArrayList.size() - 1).getAvatarGroup().getTranslateY() - 800);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
 
-        Stag stag4 = new Stag(this, ball, 1);
-        stag4.initialize(root, -2400);
+
+//        Stag stag2 = new Stag(this, ball, 2);
+//        stag2.initialize(root, -800);
+//
+//        Stag stag3 = new Stag(this, ball, 3);
+//        stag3.initialize(root, -1600);
+//
+//        Stag stag4 = new Stag(this, ball, 1);
+//        stag4.initialize(root, -2400);
 
         root.getChildren().add(ball.getBall());
 

@@ -55,6 +55,10 @@ public class Ball extends Avatar {
 
     public void jump(ArrayList<Group> avatarGroupArray) {
 
+        if(!ball.isVisible()) {
+            animationTimer.stop();
+            return;
+        }
         velocity = 350; //Velocity of every jump is 350
         //System.out.println("JUMP"); //Debugging purposes
 
@@ -98,6 +102,10 @@ public class Ball extends Avatar {
     public void freeFall() {
         //cordinate.incY(velocity);
         velocity -= acceleration;//Decelerating the Ball.
+    }
+
+    public AnimationTimer getAnimationTimer() {
+        return animationTimer;
     }
 
     public void playBurst(AnchorPane root) {
@@ -194,6 +202,5 @@ public class Ball extends Avatar {
         root.getChildren().addAll(burst);
 
     }
-
 
 }

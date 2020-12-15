@@ -18,12 +18,12 @@
             <Image url="@images/right.png" />
         </image>
     </ImageView>
-    <Label layoutX="213.0" layoutY="14.0" text="&lt;User Name&gt;" textFill="#d5ed02">
+    <Label fx:id="user_name" layoutX="213.0" layoutY="14.0" text="&lt;User Name&gt;" textFill="#d5ed02">
         <font>
             <Font size="34.0" />
         </font>
     </Label>
-    <Label layoutX="256.0" layoutY="100.0" text="&lt;Score&gt;" textFill="#d5ed02">
+    <Label fx:id="score" layoutX="256.0" layoutY="100.0" text="&lt;Score&gt;" textAlignment="CENTER" textFill="#d5ed02">
         <font>
             <Font size="30.0" />
         </font>

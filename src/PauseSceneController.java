@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.input.MouseEvent;
@@ -15,7 +16,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.IOException;
 
 import javafx.animation.Animation;
@@ -27,7 +27,11 @@ import javax.swing.*;
 
 public class PauseSceneController {
 
+    @FXML
+    private Label user_name;
 
+    @FXML
+    private Label score;
     @FXML
     private ImageView resumeBtn;
     @FXML
@@ -38,14 +42,20 @@ public class PauseSceneController {
     private Stage stage;
 
     @FXML
-    public void initialize(Stage stage) throws IOException {
+    public void initialize(Stage stage, GamePlay gamePlay) throws IOException {
 
         AnchorPane root = FXMLLoader.load(getClass().getResource("PauseScene.fxml"));
         stage.setScene(new Scene(root));
 
+        user_name = (Label) root.lookup("#user_name");
+        score = (Label) root.lookup("#score");
+
         resumeBtn = (ImageView) root.lookup("#resumeBtn");
         restartBtn = (ImageView) root.lookup("#restartBtn");
         saveBtn = (ImageView) root.lookup("#saveBtn");
+
+        user_name.setText(gamePlay.getUser_name());
+        score.setText("Score: " + Integer.toString(gamePlay.getScore()));
 
         RotateTransition rsm = new RotateTransition(Duration.seconds(2), resumeBtn);
         RotateTransition rst = new RotateTransition(Duration.seconds(2), restartBtn);
