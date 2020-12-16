@@ -110,7 +110,7 @@ public class Stag {
                     try {
                         paused = true;
                         pauseAll();
-                        pauseSceneController.initialize(stage, mainGame, thisStag);
+                        pauseSceneController.initialize(stage, mainGame, thisStag,getGame());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -191,7 +191,7 @@ public class Stag {
                 if (overYet) {                            // if overYet=true then put the next scene .
                     overYet = false;
                     try {
-                        pauseSceneController.initialize(stage, mainGame, thisStag);
+                        pauseSceneController.initialize(stage, mainGame, thisStag,getGame());
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -250,5 +250,12 @@ public class Stag {
         ball.getAnimationTimer().stop();
         animationTimer.stop();
         obstacle.getAnimationTimer().stop();
+    }
+    
+     private GameState getGame() {				//hopefully returns the current state of the game!!!
+    	return new GameState(this.obstacle,this.switches,
+    			this.star,this.ball,this.scene,this.stage,this.avatarGroup,this.obs,this.avatarGroupArray,
+    			this.currentlyActiveKeys,this.mainGame.score_label,this.mainGame.getLevel(),this.mainGame.getScore(),
+    			this.mainGame.getUserName());
     }
 }
