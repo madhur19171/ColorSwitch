@@ -135,7 +135,17 @@ public class GamePlay {
     public Ball getBall() {
         return ball;
     }
+    
+	
+	public int getScore() {
+		return score;
+	}
 
+
+	public String getUserName() {
+		// TODO Auto-generated method stub
+		return user_name;
+	}
     public void killGame() {
         animationTimer.stop();
         for (Stag stag1 : stagArrayList) {
