@@ -7,8 +7,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class NewUserInputController {
+public class NewUserInputController implements Serializable {
 
     private static GamePlay gamePlay;
 
@@ -23,7 +24,7 @@ public class NewUserInputController {
         newGame();
     }
 
-    public String getUserName() throws IOException {
+    public String getUserName() {
         return username_input.getText();
     }
 

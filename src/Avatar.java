@@ -1,6 +1,8 @@
 import javafx.scene.paint.Color;
 
-public abstract class Avatar implements Positionable, Colorable {
+import java.io.Serializable;
+
+public abstract class Avatar implements Positionable, Colorable, Serializable {
     protected Cordinate cordinate;
     protected Color color;
     protected ColorList colorList;

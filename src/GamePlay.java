@@ -9,9 +9,10 @@ import javafx.scene.control.Label;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 
-public class GamePlay {
+public class GamePlay implements Serializable {
     public Label score_label;
     private Ball ball;
     private int level;

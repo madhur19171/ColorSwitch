@@ -1,8 +1,9 @@
 import javafx.scene.paint.Color;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ColorList {
+public class ColorList implements Serializable {
     private static ArrayList<Color> colorList;
 
     public ColorList() {

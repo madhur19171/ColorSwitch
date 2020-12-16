@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javafx.animation.Animation;
 
@@ -25,7 +26,7 @@ import javafx.animation.RotateTransition;
 
 import javax.swing.*;
 
-public class PauseSceneController {
+public class PauseSceneController implements Serializable {
 
     @FXML
     private Label user_name;
@@ -115,12 +116,12 @@ public class PauseSceneController {
         NewUserInputController.getGamePlay().initialize(stage);
     }
 
-//    @FXML
-//    void saveClicked(MouseEvent event) throws IOException {
-//        new SaveGame(gameState).saveIntoFile();
-//        JOptionPane.showMessageDialog(new JFrame(), "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
-//        Stage stage = (Stage) resumeBtn.getScene().getWindow();
-//        AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
-//        stage.setScene(new Scene(root));
-//    }
+    @FXML
+    void saveClicked(MouseEvent event) throws IOException, ClassNotFoundException {
+        new SaveGame(gameState).saveIntoFile();
+        JOptionPane.showMessageDialog(new JFrame(), "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
+        Stage stage = (Stage) resumeBtn.getScene().getWindow();
+        AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
+        stage.setScene(new Scene(root));
+    }
 }

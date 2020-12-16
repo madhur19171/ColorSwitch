@@ -15,8 +15,9 @@ import javafx.util.Duration;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class StartSceneController {
+public class StartSceneController implements Serializable {
 
     @FXML
     private Button new_game_button;

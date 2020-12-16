@@ -6,8 +6,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class ColorSwitchGUI extends Application {
+public class ColorSwitchGUI extends Application implements Serializable {
 
     public static void main(String[] args) {
         launch(args);

@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -6,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class GameState{
+public class GameState implements Serializable {
 	private Obstacle obstacle;
 	private Switch switches;
 	private Star star;
@@ -15,8 +16,8 @@ public class GameState{
 	private Stage stage;
 	private Group avatarGroup;
 	private int obs;
-	private ArrayList<Group> avatarGroupArray=new ArrayList<>();
-	private HashMap<String,Boolean> currentlyActiveKeys=new HashMap<>();
+	private ArrayList<Group> avatarGroupArray;
+	private HashMap<String,Boolean> currentlyActiveKeys;
 	
 	///attributes from GamePlay class
 	

@@ -5,12 +5,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Stag {
+public class Stag implements Serializable {
 
     private final GamePlay mainGame;
     private Obstacle obstacle;
@@ -254,7 +255,7 @@ public class Stag {
     
      private GameState getGame() {				//hopefully returns the current state of the game!!!
     	return new GameState(this.obstacle,this.switches,
-    			this.star,this.ball,this.scene,this.stage,this.avatarGroup,this.obs,this.avatarGroupArray,
+    			this.star,this.ball,this.scene,this.stage,this.avatarGroup,this.obs, avatarGroupArray,
     			this.currentlyActiveKeys,this.mainGame.score_label,this.mainGame.getLevel(),this.mainGame.getScore(),
     			this.mainGame.getUserName());
     }
