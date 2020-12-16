@@ -42,7 +42,7 @@ public class PauseSceneController {
     private Stage stage;
 
     public static Stag currentStag;
-
+    private GameState gameState;
     @FXML
     public void initialize(Stage stage, GamePlay gamePlay, Stag currentStag) throws IOException {
 
@@ -117,7 +117,7 @@ public class PauseSceneController {
 
     @FXML
     void saveClicked(MouseEvent event) throws IOException {
-        System.out.println("You clicked here 2");
+        new SaveGame(gameState).saveIntoFile();
         JOptionPane.showMessageDialog(new JFrame(), "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
         Stage stage = (Stage) resumeBtn.getScene().getWindow();
         AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
