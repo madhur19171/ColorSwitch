@@ -115,12 +115,12 @@ public class PauseSceneController {
         NewUserInputController.getGamePlay().initialize(stage);
     }
 
-    @FXML
-    void saveClicked(MouseEvent event) throws IOException {
-        new SaveGame(gameState).saveIntoFile();
-        JOptionPane.showMessageDialog(new JFrame(), "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
-        Stage stage = (Stage) resumeBtn.getScene().getWindow();
-        AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
-        stage.setScene(new Scene(root));
-    }
+//    @FXML
+//    void saveClicked(MouseEvent event) throws IOException {
+//        new SaveGame(gameState).saveIntoFile();
+//        JOptionPane.showMessageDialog(new JFrame(), "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
+//        Stage stage = (Stage) resumeBtn.getScene().getWindow();
+//        AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
+//        stage.setScene(new Scene(root));
+//    }
 }

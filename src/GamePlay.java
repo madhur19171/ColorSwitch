@@ -35,11 +35,7 @@ public class GamePlay {
     public String getUser_name() {
         return user_name;
     }
-
-    public int getScore() {
-        return score;
-    }
-
+    
     public void initialize(Stage stage) throws IOException {
 
         isPaused = false;
