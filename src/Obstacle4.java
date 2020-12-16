@@ -45,7 +45,7 @@ public class Obstacle4 extends Obstacle {
                 }
                 double elapsed = (now - lastStamp) / 1000000000.0;
                 lastStamp = now;
-                angle += velocity * elapsed;
+                angle += thisObstacle.getVelocity() * elapsed;
                 cross1.setRotate(180-angle);
                 cross2.setRotate(angle);
             }

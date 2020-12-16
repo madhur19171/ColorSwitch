@@ -41,10 +41,15 @@ public class PauseSceneController {
 
     private Stage stage;
 
-    @FXML
-    public void initialize(Stage stage, GamePlay gamePlay) throws IOException {
+    public static Stag currentStag;
 
+    @FXML
+    public void initialize(Stage stage, GamePlay gamePlay, Stag currentStag) throws IOException {
+
+        PauseSceneController.currentStag = currentStag;
+        //System.out.println(currentStag);
         AnchorPane root = FXMLLoader.load(getClass().getResource("PauseScene.fxml"));
+        this.stage = stage;
         stage.setScene(new Scene(root));
 
         user_name = (Label) root.lookup("#user_name");
@@ -55,7 +60,7 @@ public class PauseSceneController {
         saveBtn = (ImageView) root.lookup("#saveBtn");
 
         user_name.setText(gamePlay.getUser_name());
-        score.setText("Score: " + Integer.toString(gamePlay.getScore()));
+        score.setText("Score: " + gamePlay.getScore());
 
         RotateTransition rsm = new RotateTransition(Duration.seconds(2), resumeBtn);
         RotateTransition rst = new RotateTransition(Duration.seconds(2), restartBtn);
@@ -81,21 +86,39 @@ public class PauseSceneController {
 
     }
 
-    @FXML
-    void resumeClicked(MouseEvent event) {
-        System.out.println("you clicked here 0");
+    public void resume() {
+        System.out.println("Resumed");
+        currentStag.resume();
     }
 
     @FXML
-    void restartClicked(MouseEvent event) {
-        System.out.println("you clicked here 1");
+    void resumeClicked(MouseEvent event) {
+        if (NewUserInputController.getGamePlay().isPaused())
+            resume();
+        else {
+            if (NewUserInputController.getGamePlay().getScore() >= 5) {
+                NewUserInputController.getGamePlay().setScore(NewUserInputController.getGamePlay().getScore() - 5);
+                resume();
+            } else {
+                JOptionPane.showMessageDialog(new JFrame(), "Sorry You Need At Least 5 points To Revive.", "Revival", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }
+
+    @FXML
+    void restartClicked(MouseEvent event) throws IOException {
+        System.out.println("Restarted");
+        Stage stage = (Stage) user_name.getScene().getWindow();
+        NewUserInputController.getGamePlay().killGame();
+        NewUserInputController.setGamePlay(new GamePlay());
+        NewUserInputController.getGamePlay().setUser_name(user_name.getText());
+        NewUserInputController.getGamePlay().initialize(stage);
     }
 
     @FXML
     void saveClicked(MouseEvent event) throws IOException {
         System.out.println("You clicked here 2");
-        JFrame f = new JFrame();
-        JOptionPane.showMessageDialog(f, "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(new JFrame(), "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
         Stage stage = (Stage) resumeBtn.getScene().getWindow();
         AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
         stage.setScene(new Scene(root));

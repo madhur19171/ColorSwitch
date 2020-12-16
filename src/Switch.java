@@ -56,7 +56,7 @@ public class Switch extends Avatar {
     public void switchColor(Ball ball) {
         Color currentColor = ball.getColor();
         Random random = new Random();
-        while (ball.getColor() == currentColor) {
+        while (ball.getColor().equals(currentColor)) {
             int ind = random.nextInt(4);
             ball.setColor(ColorList.getColorList().get(ind));
         }

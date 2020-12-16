@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class NewUserInputController {
 
+    private static GamePlay gamePlay;
+
     @FXML
     private TextField username_input;
 
@@ -18,16 +20,25 @@ public class NewUserInputController {
 
     @FXML
     void StartNewGame(MouseEvent event) throws IOException {
-        Stage stage = (Stage) start_button.getScene().getWindow();
-        GamePlay gamePlay = new GamePlay();
-        gamePlay.setUser_name(getUserName());
-        gamePlay.initialize(stage);
+        newGame();
     }
 
     public String getUserName() throws IOException {
-//        AnchorPane root = FXMLLoader.load(getClass().getResource("NewUserInput.fxml"));
-//        username_input = (TextField) root.lookup("#username_input");
         return username_input.getText();
     }
 
+    public static GamePlay getGamePlay() {
+        return gamePlay;
+    }
+
+    public static void setGamePlay(GamePlay gamePlay) {
+        NewUserInputController.gamePlay = gamePlay;
+    }
+
+    private void newGame() throws IOException {
+        Stage stage = (Stage) start_button.getScene().getWindow();
+        gamePlay = new GamePlay();
+        gamePlay.setUser_name(getUserName());
+        gamePlay.initialize(stage);
+    }
 }

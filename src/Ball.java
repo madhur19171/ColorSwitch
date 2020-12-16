@@ -12,11 +12,12 @@ import java.util.Random;
 
 public class Ball extends Avatar {
 
-    private int size;
+    private final int size;
     private double velocity;
     private final double acceleration;
     private final int threshold;
     private final Circle ball;
+    private int count = 0;
 
     AnimationTimer animationTimer;//After every jump, new Animation timer needs to be created.
 
@@ -55,12 +56,8 @@ public class Ball extends Avatar {
 
     public void jump(ArrayList<Group> avatarGroupArray) {
 
-        if(!ball.isVisible()) {
-            animationTimer.stop();
-            return;
-        }
         velocity = 350; //Velocity of every jump is 350
-        //System.out.println("JUMP"); //Debugging purposes
+
 
         if (animationTimer != null) //If the animation timer already exists, stop it.
             animationTimer.stop();
@@ -70,7 +67,18 @@ public class Ball extends Avatar {
 
             @Override
             public void handle(long now) {
-//            	ball.setVisible(false);
+
+//                if (count++ == 10) {
+//                    System.out.println("JUMP\t" + count); //Debugging purposes
+//                    count = 0;
+//                }
+
+
+                if (!ball.isVisible()) {
+                    animationTimer.stop();
+                    return;
+                }
+
                 if (lastStamp == 0) {//For initializing the lastStamp at the start of animationTimer.
                     lastStamp = now;
                     return;
@@ -110,24 +118,23 @@ public class Ball extends Avatar {
 
     public void playBurst(AnchorPane root) {
 
-        Circle burst[] = new Circle[12];
+        Circle[] burst = new Circle[12];
         ParallelTransition pt = new ParallelTransition();
         for (int i = 0; i < 12; i++) {
             burst[i] = new Circle(this.getCordinate().getX(), this.getCordinate().getY(), size / 4);
         }
-        burst[1].setFill(color.YELLOW);
-        burst[2].setFill(color.AQUA);
-        burst[3].setFill(color.DEEPPINK);
-        burst[4].setFill(color.DARKBLUE);
-        burst[5].setFill(color.YELLOW);
-        burst[6].setFill(color.AQUA);
-        burst[7].setFill(color.DEEPPINK);
-        burst[8].setFill(color.DARKBLUE);
-        burst[9].setFill(color.YELLOW);
-        burst[0].setFill(color.AQUA);
-        burst[10].setFill(color.DEEPPINK);
-        burst[11].setFill(color.AQUA);
-        //int add=0;
+        burst[1].setFill(Color.YELLOW);
+        burst[2].setFill(Color.AQUA);
+        burst[3].setFill(Color.DEEPPINK);
+        burst[4].setFill(Color.DARKBLUE);
+        burst[5].setFill(Color.YELLOW);
+        burst[6].setFill(Color.AQUA);
+        burst[7].setFill(Color.DEEPPINK);
+        burst[8].setFill(Color.DARKBLUE);
+        burst[9].setFill(Color.YELLOW);
+        burst[0].setFill(Color.AQUA);
+        burst[10].setFill(Color.DEEPPINK);
+        burst[11].setFill(Color.AQUA);
 
 
         TranslateTransition up = new TranslateTransition();

@@ -31,13 +31,14 @@ public class Obstacle1 extends Obstacle {
 
             @Override
             public void handle(long now) {
+
                 if (lastStamp == 0) {
                     lastStamp = now;
                     return;
                 }
                 double elapsed = (now - lastStamp) / 1000000000.0;
                 lastStamp = now;
-                angle += velocity * elapsed;
+                angle += thisObstacle.getVelocity() * elapsed;
                 obstacle.setRotate(angle);
             }
         };
@@ -52,6 +53,7 @@ public class Obstacle1 extends Obstacle {
     public Group getObstacle() {
         return obstacle;
     }
+
 
     @Override
     public Cordinate getCordinate() {

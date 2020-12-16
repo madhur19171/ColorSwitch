@@ -35,7 +35,7 @@ public class Obstacle6 extends Obstacle{
                 }
                 double elapsed = (now - lastStamp) / 1000000000.0;
                 lastStamp = now;
-                angle += velocity * elapsed;
+                angle += thisObstacle.getVelocity() * elapsed;
                 obstacle.setRotate(angle);
                 
                 

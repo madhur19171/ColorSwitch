@@ -18,11 +18,12 @@ public class GamePlay {
     private int score;
     private Scene scene;
     private Stage stage;
+    private boolean isPaused;
     private Stag stag;
     private String user_name;
     private ArrayList<Stag> stagArrayList;
+    private AnimationTimer animationTimer;
     HashMap<String, Boolean> currentlyActiveKeys = new HashMap<>();
-    private boolean show = false;
 
     //Since This class has provided its own default constructor which will be called by FXML loader,
     //We need to initialize the instance variables using initialize class.
@@ -40,6 +41,13 @@ public class GamePlay {
     }
 
     public void initialize(Stage stage) throws IOException {
+
+        isPaused = false;
+
+        final int[] index = {0};
+
+        this.level = 1;
+
         this.stage = stage;
         AnchorPane root = FXMLLoader.load(getClass().getResource("GamePlay.fxml"));
         scene = new Scene(root);
@@ -54,13 +62,13 @@ public class GamePlay {
         stagArrayList = new ArrayList<>(0);
 
         this.stag = new Stag(this, ball, 1);
-        stag.initialize(root, 0);
+        stag.initialize(root, 0, index[0]++);
         stagArrayList.add(stag);
         GamePlay currentObject = this;
 
-        new AnimationTimer() {
+        animationTimer = new AnimationTimer() {
             int i = 1;
-            Random random = new Random();
+            final Random random = new Random();
 
             @Override
             public void handle(long now) {
@@ -68,26 +76,18 @@ public class GamePlay {
                 if (stagArrayList.get(stagArrayList.size() - 1).getAvatarGroup().getTranslateY() > 0) {
                     try {
                         i = random.nextInt(3);
-                        Stag newStage = new Stag(currentObject, ball, ++i);
+                        Stag newStag = new Stag(currentObject, ball, ++i);
 //                        System.out.println(i);
-                        stagArrayList.add(newStage);
-                        newStage.initialize(root, (int) stagArrayList.get(stagArrayList.size() - 1).getAvatarGroup().getTranslateY() - 800);
+                        stagArrayList.add(newStag);
+                        newStag.initialize(root, (int) stagArrayList.get(stagArrayList.size() - 1).getAvatarGroup().getTranslateY() - 800, index[0]++);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
-        }.start();
+        };
+        animationTimer.start();
 
-
-//        Stag stag2 = new Stag(this, ball, 2);
-//        stag2.initialize(root, -800);
-//
-//        Stag stag3 = new Stag(this, ball, 3);
-//        stag3.initialize(root, -1600);
-//
-//        Stag stag4 = new Stag(this, ball, 1);
-//        stag4.initialize(root, -2400);
 
         root.getChildren().add(ball.getBall());
 
@@ -104,8 +104,42 @@ public class GamePlay {
         return stage;
     }
 
+    public ArrayList<Stag> getStagArrayList() {
+        return stagArrayList;
+    }
+
     void increaseScore() {
         score++;
+        if (score % 2 == 0)
+            level++;
         score_label.setText("Score: " + score);
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+        score_label.setText("Score: " + score);
+    }
+
+    public boolean isPaused() {
+        return isPaused;
+    }
+
+    public void setPaused(boolean paused) {
+        isPaused = paused;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public Ball getBall() {
+        return ball;
+    }
+
+    public void killGame() {
+        animationTimer.stop();
+        for (Stag stag1 : stagArrayList) {
+            stag1.killStag();
+        }
     }
 }
