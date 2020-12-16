@@ -44,8 +44,8 @@ public class PauseSceneController {
     public static Stag currentStag;
     private GameState gameState;
     @FXML
-    public void initialize(Stage stage, GamePlay gamePlay, Stag currentStag) throws IOException {
-
+    public void initialize(Stage stage, GamePlay gamePlay, Stag currentStag,GameState game) throws IOException {
+        this.gameState=game;
         PauseSceneController.currentStag = currentStag;
         //System.out.println(currentStag);
         AnchorPane root = FXMLLoader.load(getClass().getResource("PauseScene.fxml"));
