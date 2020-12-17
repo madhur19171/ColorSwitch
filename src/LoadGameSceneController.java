@@ -44,6 +44,26 @@ public class LoadGameSceneController {
         loadGame(mudit.getText());
     }
 
+    @FXML
+    void raghavClicked(MouseEvent event) throws IOException, ClassNotFoundException {
+        loadGame(raghav.getText());
+    }
+
+    @FXML
+    void arjunClicked(MouseEvent event) throws IOException, ClassNotFoundException {
+        loadGame(arjun.getText());
+    }
+
+    @FXML
+    void rachitClicked(MouseEvent event) throws IOException, ClassNotFoundException {
+        loadGame(rachit.getText());
+    }
+
+    @FXML
+    void mananClicked(MouseEvent event) throws IOException, ClassNotFoundException {
+        loadGame(manan.getText());
+    }
+
     void loadGame(String name) throws ClassNotFoundException, IOException {
         SaveGame obj = new SaveGame();
         GameState p = obj.loadGame(name);        //Pass the User name as argument to load
