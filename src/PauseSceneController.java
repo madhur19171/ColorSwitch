@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -38,6 +39,8 @@ public class PauseSceneController {
     private ImageView restartBtn;
     @FXML
     private ImageView saveBtn;
+    @FXML
+    private Button mainMenuButton;
 
     private Stage stage;
 
@@ -84,6 +87,13 @@ public class PauseSceneController {
         sbt.play();
         rst.play();
 
+    }
+
+    @FXML
+    void gotoMainMenu(MouseEvent event) throws IOException {
+        Stage stage = (Stage) user_name.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("NewUserInput.fxml"));
+        stage.setScene(new Scene(root));
     }
 
     public void resume() {
