@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class NewUserInputController implements Serializable {
+public class NewUserInputController{
 
     private static GamePlay gamePlay;
 
@@ -40,6 +40,7 @@ public class NewUserInputController implements Serializable {
         Stage stage = (Stage) start_button.getScene().getWindow();
         gamePlay = new GamePlay();
         gamePlay.setUser_name(getUserName());
-        gamePlay.initialize(stage);
+        AnchorPane root = FXMLLoader.load(getClass().getResource("GamePlay.fxml"));
+        gamePlay.initialize(stage, root.getPrefHeight());
     }
 }

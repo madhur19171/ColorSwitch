@@ -26,7 +26,7 @@ import javafx.animation.RotateTransition;
 
 import javax.swing.*;
 
-public class PauseSceneController implements Serializable {
+public class PauseSceneController{
 
     @FXML
     private Label user_name;
@@ -113,7 +113,8 @@ public class PauseSceneController implements Serializable {
         NewUserInputController.getGamePlay().killGame();
         NewUserInputController.setGamePlay(new GamePlay());
         NewUserInputController.getGamePlay().setUser_name(user_name.getText());
-        NewUserInputController.getGamePlay().initialize(stage);
+        AnchorPane root = FXMLLoader.load(getClass().getResource("GamePlay.fxml"));
+        NewUserInputController.getGamePlay().initialize(stage, root.getPrefHeight());
     }
 
     @FXML

@@ -4,7 +4,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.Serializable;
 
-public class LoadGameSceneController implements Serializable {
+public class LoadGameSceneController {
 
     @FXML
     private Label madhur;

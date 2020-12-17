@@ -13,18 +13,20 @@ import java.io.Serializable;
 import java.util.*;
 
 public class GamePlay implements Serializable {
-    public Label score_label;
-    private Ball ball;
-    private int level;
+    public transient Label score_label;
+    private transient Ball ball;
+    private int level = 1;
     private int score;
-    private Scene scene;
-    private Stage stage;
-    private boolean isPaused;
-    private Stag stag;
+    private transient Scene scene;
+    private transient Stage stage;
+    private transient boolean isPaused;
+    private transient Stag stag;
     private String user_name;
-    private ArrayList<Stag> stagArrayList;
-    private AnimationTimer animationTimer;
-    HashMap<String, Boolean> currentlyActiveKeys = new HashMap<>();
+    private transient ArrayList<Stag> stagArrayList;
+    private transient AnimationTimer animationTimer;
+    private final ArrayList<Integer> obsArrayList = new ArrayList<>(0);
+    transient HashMap<String, Boolean> currentlyActiveKeys = new HashMap<>();
+    private static final long serialVersionUID = 1L;
 
     //Since This class has provided its own default constructor which will be called by FXML loader,
     //We need to initialize the instance variables using initialize class.
@@ -36,14 +38,12 @@ public class GamePlay implements Serializable {
     public String getUser_name() {
         return user_name;
     }
-    
-    public void initialize(Stage stage) throws IOException {
+
+    public void initialize(Stage stage, double ballY) throws IOException {
 
         isPaused = false;
 
         final int[] index = {0};
-
-        this.level = 1;
 
         this.stage = stage;
         AnchorPane root = FXMLLoader.load(getClass().getResource("GamePlay.fxml"));
@@ -54,7 +54,13 @@ public class GamePlay implements Serializable {
 
         int ballOffsetY = 50;   //Initial offset of ball from the ground
         //Creating Ball Object
-        ball = new Ball(20, 15, new Cordinate(root.getPrefWidth() / 2, root.getPrefHeight() - ballOffsetY));
+
+
+        if(obsArrayList.isEmpty())
+            ballY -= ballOffsetY;
+
+
+        ball = new Ball(20, 15, new Cordinate(root.getPrefWidth() / 2, ballY));
 
         stagArrayList = new ArrayList<>(0);
 
@@ -62,6 +68,16 @@ public class GamePlay implements Serializable {
         stag.initialize(root, 0, index[0]++);
         stagArrayList.add(stag);
         GamePlay currentObject = this;
+
+        if(!obsArrayList.isEmpty()){
+            for (int i = 0; i < obsArrayList.size(); i++) {
+                Stag newStag = new Stag(currentObject, ball, obsArrayList.get(i));
+                stagArrayList.add(newStag);
+                newStag.initialize(root, (int) stagArrayList.get(stagArrayList.size() - 1).getAvatarGroup().getTranslateY() - 800, index[0]++);
+            }
+        }
+
+
 
         animationTimer = new AnimationTimer() {
             int i = 1;
@@ -74,7 +90,7 @@ public class GamePlay implements Serializable {
                     try {
                         i = random.nextInt(3);
                         Stag newStag = new Stag(currentObject, ball, ++i);
-//                        System.out.println(i);
+                        obsArrayList.add(i);
                         stagArrayList.add(newStag);
                         newStag.initialize(root, (int) stagArrayList.get(stagArrayList.size() - 1).getAvatarGroup().getTranslateY() - 800, index[0]++);
                     } catch (IOException e) {
@@ -132,17 +148,18 @@ public class GamePlay implements Serializable {
     public Ball getBall() {
         return ball;
     }
-    
-	
-	public int getScore() {
-		return score;
-	}
 
 
-	public String getUserName() {
-		// TODO Auto-generated method stub
-		return user_name;
-	}
+    public int getScore() {
+        return score;
+    }
+
+
+    public String getUserName() {
+        // TODO Auto-generated method stub
+        return user_name;
+    }
+
     public void killGame() {
         animationTimer.stop();
         for (Stag stag1 : stagArrayList) {

@@ -17,9 +17,8 @@ public class Ball extends Avatar {
     private final double acceleration;
     private final int threshold;
     private final Circle ball;
-    private int count = 0;
 
-    AnimationTimer animationTimer;//After every jump, new Animation timer needs to be created.
+    transient AnimationTimer animationTimer;//After every jump, new Animation timer needs to be created.
 
     public Ball(int size, double acceleration, Cordinate position) {
         super(position, ColorList.getColorList().get(new Random().nextInt(4)));
@@ -67,12 +66,6 @@ public class Ball extends Avatar {
 
             @Override
             public void handle(long now) {
-
-//                if (count++ == 10) {
-//                    System.out.println("JUMP\t" + count); //Debugging purposes
-//                    count = 0;
-//                }
-
 
                 if (!ball.isVisible()) {
                     animationTimer.stop();

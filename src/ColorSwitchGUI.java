@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class ColorSwitchGUI extends Application implements Serializable {
+public class ColorSwitchGUI extends Application{
 
     public static void main(String[] args) {
         launch(args);
@@ -22,6 +22,5 @@ public class ColorSwitchGUI extends Application implements Serializable {
         primaryStage.setTitle("ColorSwitch");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        System.out.println("Surprise Mother Fucker!");
     }
 }

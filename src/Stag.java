@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Stag implements Serializable {
+public class Stag{
 
     private final GamePlay mainGame;
     private Obstacle obstacle;

@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Properties;
 
 
-public class SaveGame implements Serializable{
+public class SaveGame{
 	private GameState game;
 	
 	SaveGame(){
