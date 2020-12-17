@@ -25,16 +25,27 @@ public class GamePlay implements Serializable {
     private transient ArrayList<Stag> stagArrayList;
     private transient AnimationTimer animationTimer;
 
-    public ArrayList<Integer> getObsArrayList() {
-        return obsArrayList;
-    }
-
     private final ArrayList<Integer> obsArrayList = new ArrayList<>(0);
+    private ArrayList<Double> obsPositionArrayList = new ArrayList<>(0);
+
     transient HashMap<String, Boolean> currentlyActiveKeys = new HashMap<>();
     private static final long serialVersionUID = 1L;
     private double ballY;
     //Since This class has provided its own default constructor which will be called by FXML loader,
     //We need to initialize the instance variables using initialize class.
+
+
+    public ArrayList<Integer> getObsArrayList() {
+        return obsArrayList;
+    }
+
+    public ArrayList<Double> getPositionObsArrayList() {
+        return obsPositionArrayList;
+    }
+
+    public void setObsPositionArrayList(ArrayList<Double> obsPositionArrayList) {
+        this.obsPositionArrayList = obsPositionArrayList;
+    }
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
@@ -44,12 +55,12 @@ public class GamePlay implements Serializable {
         return user_name;
     }
 
-    public double getBallY() {
-        return ballY;
+    public int getBallY() {
+        return (int) ballY;
     }
 
     public void initialize(Stage stage, double ballY) throws IOException {
-        this.ballY=ballY;
+        this.ballY = ballY;
         isPaused = false;
 
         final int[] index = {0};
@@ -65,7 +76,7 @@ public class GamePlay implements Serializable {
         //Creating Ball Object
 
 
-        if(obsArrayList.isEmpty())
+        if (obsArrayList.isEmpty())
             ballY -= ballOffsetY;
 
 
@@ -74,18 +85,24 @@ public class GamePlay implements Serializable {
         stagArrayList = new ArrayList<>(0);
 
         this.stag = new Stag(this, ball, 1);
-        stag.initialize(root, 0, index[0]++);
-        stagArrayList.add(stag);
+
+        stagArrayList.add(this.stag);
+
+        if (obsArrayList.isEmpty()) {
+            stag.initialize(root, 0, index[0]++);
+        } else stag.initialize(root, obsPositionArrayList.get(0), index[0]++);
+
+
         GamePlay currentObject = this;
 
-        if(!obsArrayList.isEmpty()){
+        if (!obsArrayList.isEmpty()) {
             for (int i = 0; i < obsArrayList.size(); i++) {
                 Stag newStag = new Stag(currentObject, ball, obsArrayList.get(i));
                 stagArrayList.add(newStag);
-                newStag.initialize(root, (int) stagArrayList.get(stagArrayList.size() - 1).getAvatarGroup().getTranslateY() - 800, index[0]++);
+                newStag.initialize(root, obsPositionArrayList.get(i), index[0]++);
+                System.out.println("OBS:" + obsArrayList.get(i) + "\t");
             }
         }
-
 
 
         animationTimer = new AnimationTimer() {

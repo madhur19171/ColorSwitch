@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Stag{
+public class Stag {
 
     private final GamePlay mainGame;
     private Obstacle obstacle;
@@ -43,7 +43,7 @@ public class Stag{
         return avatarGroup;
     }
 
-    public void initialize(AnchorPane root, int translateGroup, int index) throws IOException {
+    public void initialize(AnchorPane root, double translateGroup, int index) throws IOException {
         //Creating Star object for initial development purposes only.
 
         //All Avatar objects other than Ball will be created in Stag Class.
@@ -245,6 +245,11 @@ public class Stag{
             stagg.getAnimationTimer().stop();
             stagg.getObstacle().stop();
         }
+
+        for (int i = 0; i < mainGame.getStagArrayList().size(); i++) {
+            mainGame.setObsPositionArrayList(new ArrayList<>(0));
+            mainGame.getPositionObsArrayList().add(mainGame.getStagArrayList().get(i).getAvatarGroup().getTranslateY());
+        }
     }
 
     public void killStag() {
@@ -252,6 +257,6 @@ public class Stag{
         animationTimer.stop();
         obstacle.getAnimationTimer().stop();
     }
-    
+
 
 }

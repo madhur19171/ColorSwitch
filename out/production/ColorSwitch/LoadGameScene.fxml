@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="900.0" prefWidth="640.0" style="-fx-background-color: rgb(41, 41, 41);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoadGameSceneController">
+<AnchorPane prefHeight="900.0" prefWidth="640.0" style="-fx-background-color: rgb(41, 41, 41);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoadGameSceneController">
    <ImageView fitHeight="54.0" fitWidth="56.0" layoutX="14.0" layoutY="832.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@images/left.png" />
@@ -16,7 +17,7 @@
          <Image url="@images/right.png" />
       </image>
    </ImageView>
-   <Label layoutX="195.0" layoutY="41.0" text="User Names" textFill="#afdb1a">
+   <Label fx:id="user_names_label" layoutX="195.0" layoutY="41.0" text="User Names" textFill="#afdb1a">
       <font>
          <Font size="47.0" />
       </font>
@@ -26,17 +27,12 @@
          <Font size="45.0" />
       </font>
    </Label>
-   <Label fx:id="raghav" alignment="CENTER" layoutX="150.0" layoutY="711.0" prefHeight="76.0" prefWidth="340.0" style="-fx-border-width: 5; -fx-border-color: rgb(255, 0, 0);" text="Raghav" textFill="#9387ff">
-      <font>
-         <Font size="45.0" />
-      </font>
-   </Label>
-   <Label fx:id="arjun" alignment="CENTER" layoutX="150.0" layoutY="613.0" prefHeight="76.0" prefWidth="340.0" style="-fx-border-width: 5; -fx-border-color: rgb(255, 0, 0);" text="Arjun" textFill="#9387ff">
-      <font>
-         <Font size="45.0" />
-      </font>
-   </Label>
    <Label fx:id="mudit" alignment="CENTER" layoutX="148.0" layoutY="298.0" onMouseClicked="#muditClicked" prefHeight="76.0" prefWidth="340.0" style="-fx-border-width: 5; -fx-border-color: rgb(255, 0, 0);" text="Mudit" textFill="#9387ff">
+      <font>
+         <Font size="45.0" />
+      </font>
+   </Label>
+   <Label fx:id="manan" alignment="CENTER" layoutX="148.0" layoutY="407.0" prefHeight="76.0" prefWidth="340.0" style="-fx-border-width: 5; -fx-border-color: rgb(255, 0, 0);" text="Manan" textFill="#9387ff">
       <font>
          <Font size="45.0" />
       </font>
@@ -46,7 +42,12 @@
          <Font size="45.0" />
       </font>
    </Label>
-   <Label fx:id="manan" alignment="CENTER" layoutX="148.0" layoutY="407.0" prefHeight="76.0" prefWidth="340.0" style="-fx-border-width: 5; -fx-border-color: rgb(255, 0, 0);" text="Manan" textFill="#9387ff">
+   <Label fx:id="arjun" alignment="CENTER" layoutX="150.0" layoutY="613.0" prefHeight="76.0" prefWidth="340.0" style="-fx-border-width: 5; -fx-border-color: rgb(255, 0, 0);" text="Arjun" textFill="#9387ff">
+      <font>
+         <Font size="45.0" />
+      </font>
+   </Label>
+   <Label fx:id="raghav" alignment="CENTER" layoutX="150.0" layoutY="711.0" prefHeight="76.0" prefWidth="340.0" style="-fx-border-width: 5; -fx-border-color: rgb(255, 0, 0);" text="Raghav" textFill="#9387ff">
       <font>
          <Font size="45.0" />
       </font>

@@ -30,13 +30,14 @@ public class StartSceneController {
 
     @FXML
     private Button exit_game;
-    
+
 
     @FXML
     void loadGame(MouseEvent event) throws IOException {
-        AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
+       // AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
         Stage stage = (Stage) load_game_button.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        new LoadGameSceneController().initialize(stage);
+        //stage.setScene(new Scene(root));
     }
 
     @FXML

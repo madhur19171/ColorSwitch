@@ -26,6 +26,7 @@ public class Star extends Avatar {
         this.size = size;//Not even required
 
         //Making Star using Star image
+        //AnchorPane root = (FXMLLoader.load(getClass().getResource("Star.fxml")));
         AnchorPane root = (FXMLLoader.load(getClass().getResource("Star.fxml")));
         star = (SVGPath) root.getChildren().get(0);
 

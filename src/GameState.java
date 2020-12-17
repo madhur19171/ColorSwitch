@@ -13,7 +13,9 @@ public class GameState implements Serializable {
 	private String user_name;
 	private ArrayList<Integer> obsArrayList;
 	private double ballY;
-	public GameState(int level, int score, String user_name, ArrayList<Integer> obsArrayList,double ballY) {
+	private GamePlay gamePlay;
+	public GameState(GamePlay gamePlay, int level, int score, String user_name, ArrayList<Integer> obsArrayList,double ballY) {
+		this.gamePlay = gamePlay;
 		this.level = level;
 		this.score = score;
 		this.user_name = user_name;
@@ -42,4 +44,7 @@ public class GameState implements Serializable {
 		return ballY;
 	}
 
+	public GamePlay getGamePlay() {
+		return gamePlay;
+	}
 }

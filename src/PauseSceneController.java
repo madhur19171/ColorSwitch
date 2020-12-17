@@ -16,8 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 
 import javafx.animation.Animation;
 
@@ -26,7 +25,7 @@ import javafx.animation.RotateTransition;
 
 import javax.swing.*;
 
-public class PauseSceneController{
+public class PauseSceneController {
 
     @FXML
     private Label user_name;
@@ -119,13 +118,26 @@ public class PauseSceneController{
 
     @FXML
     void saveClicked(MouseEvent event) throws IOException, ClassNotFoundException {
-        GameState p=new GameState(NewUserInputController.getGamePlay().getLevel(),NewUserInputController.getGamePlay().getScore(),
-                NewUserInputController.getGamePlay().getUser_name(),NewUserInputController.getGamePlay().getObsArrayList()
-        ,NewUserInputController.getGamePlay().getBallY());
+
+
+        try(FileWriter fw = new FileWriter("src/Names.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println(NewUserInputController.getGamePlay().getUser_name());
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+        }
+
+
+        GameState p = new GameState(NewUserInputController.getGamePlay(), NewUserInputController.getGamePlay().getLevel(), NewUserInputController.getGamePlay().getScore(),
+                NewUserInputController.getGamePlay().getUser_name(), NewUserInputController.getGamePlay().getObsArrayList()
+                , NewUserInputController.getGamePlay().getBallY());
         new SaveGame(p).saveIntoFile();
         JOptionPane.showMessageDialog(new JFrame(), "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
         Stage stage = (Stage) resumeBtn.getScene().getWindow();
-        AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
-        stage.setScene(new Scene(root));
+        //AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));
+        new LoadGameSceneController().initialize(stage);
+        //stage.setScene(new Scene(root));
     }
 }

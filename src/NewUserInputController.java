@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class NewUserInputController{
+public class NewUserInputController {
 
     private static GamePlay gamePlay;
 
@@ -21,7 +21,8 @@ public class NewUserInputController{
 
     @FXML
     void StartNewGame(MouseEvent event) throws IOException {
-        newGame();
+        AnchorPane root = FXMLLoader.load(getClass().getResource("GamePlay.fxml"));
+        newGame(root.getPrefHeight());
     }
 
     public String getUserName() {
@@ -36,11 +37,10 @@ public class NewUserInputController{
         NewUserInputController.gamePlay = gamePlay;
     }
 
-    private void newGame() throws IOException {
+    private void newGame(double ballY) throws IOException {
         Stage stage = (Stage) start_button.getScene().getWindow();
         gamePlay = new GamePlay();
         gamePlay.setUser_name(getUserName());
-        AnchorPane root = FXMLLoader.load(getClass().getResource("GamePlay.fxml"));
-        gamePlay.initialize(stage, root.getPrefHeight());
+        gamePlay.initialize(stage, ballY);
     }
 }
