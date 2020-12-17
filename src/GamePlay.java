@@ -24,10 +24,15 @@ public class GamePlay implements Serializable {
     private String user_name;
     private transient ArrayList<Stag> stagArrayList;
     private transient AnimationTimer animationTimer;
+
+    public ArrayList<Integer> getObsArrayList() {
+        return obsArrayList;
+    }
+
     private final ArrayList<Integer> obsArrayList = new ArrayList<>(0);
     transient HashMap<String, Boolean> currentlyActiveKeys = new HashMap<>();
     private static final long serialVersionUID = 1L;
-
+    private double ballY;
     //Since This class has provided its own default constructor which will be called by FXML loader,
     //We need to initialize the instance variables using initialize class.
 
@@ -39,8 +44,12 @@ public class GamePlay implements Serializable {
         return user_name;
     }
 
-    public void initialize(Stage stage, double ballY) throws IOException {
+    public double getBallY() {
+        return ballY;
+    }
 
+    public void initialize(Stage stage, double ballY) throws IOException {
+        this.ballY=ballY;
         isPaused = false;
 
         final int[] index = {0};

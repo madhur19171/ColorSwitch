@@ -43,10 +43,10 @@ public class PauseSceneController{
     private Stage stage;
 
     public static Stag currentStag;
-    private GameState gameState;
+
     @FXML
-    public void initialize(Stage stage, GamePlay gamePlay, Stag currentStag,GameState game) throws IOException {
-        this.gameState=game;
+    public void initialize(Stage stage, GamePlay gamePlay, Stag currentStag) throws IOException {
+
         PauseSceneController.currentStag = currentStag;
         //System.out.println(currentStag);
         AnchorPane root = FXMLLoader.load(getClass().getResource("PauseScene.fxml"));
@@ -119,7 +119,10 @@ public class PauseSceneController{
 
     @FXML
     void saveClicked(MouseEvent event) throws IOException, ClassNotFoundException {
-        new SaveGame(gameState).saveIntoFile();
+        GameState p=new GameState(NewUserInputController.getGamePlay().getLevel(),NewUserInputController.getGamePlay().getScore(),
+                NewUserInputController.getGamePlay().getUser_name(),NewUserInputController.getGamePlay().getObsArrayList()
+        ,NewUserInputController.getGamePlay().getBallY());
+        new SaveGame(p).saveIntoFile();
         JOptionPane.showMessageDialog(new JFrame(), "Successfully Saved Your Game", "Saved", JOptionPane.INFORMATION_MESSAGE);
         Stage stage = (Stage) resumeBtn.getScene().getWindow();
         AnchorPane root = FXMLLoader.load(getClass().getResource("LoadGameScene.fxml"));

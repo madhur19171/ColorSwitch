@@ -29,16 +29,17 @@ public class SaveGame{
 	public GameState loadGame(String user_name) throws ClassNotFoundException {
 		
 		ArrayList<GameState> list=read();
+
 		if(list.size()==0) {
 			System.out.println("No records Mister!");
 		}
 		else {
 			for(GameState x:list) {
-				if(x.getUserName().equals(user_name))
+				if(x.getUser_name().equals(user_name))
 					return x;
 			}
 		}
-
+		System.out.println("No records found Boss!!");
 		return null;
 	}
 	
