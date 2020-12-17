@@ -39,6 +39,8 @@ public class NewUserInputController {
 
     private void newGame(double ballY) throws IOException {
         Stage stage = (Stage) start_button.getScene().getWindow();
+        if (gamePlay != null)
+            gamePlay.killGame();
         gamePlay = new GamePlay();
         gamePlay.setUser_name(getUserName());
         gamePlay.initialize(stage, ballY);

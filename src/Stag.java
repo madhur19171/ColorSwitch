@@ -246,8 +246,9 @@ public class Stag {
             stagg.getObstacle().stop();
         }
 
+        mainGame.setObsPositionArrayList(new ArrayList<>(0));
+
         for (int i = 0; i < mainGame.getStagArrayList().size(); i++) {
-            mainGame.setObsPositionArrayList(new ArrayList<>(0));
             mainGame.getPositionObsArrayList().add(mainGame.getStagArrayList().get(i).getAvatarGroup().getTranslateY());
         }
     }
