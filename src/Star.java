@@ -79,7 +79,7 @@ public class Star extends Avatar {
     public boolean checkVicinity(Ball ball) {
         Shape intersect = Shape.intersect(star, ball.getBall());
         return intersect.getBoundsInLocal().getWidth() != -1;
-        //Fuck Yourself
+        
     }
 
     public void killStar() {
